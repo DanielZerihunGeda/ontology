@@ -1,0 +1,495 @@
+@prefix kg: <https://example.org/ontology#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+#################################################################
+# Ontology header
+#################################################################
+
+<https://example.org/ontology>
+    a owl:Ontology ;
+    rdfs:label "Reference Knowledge Graph Schema"@en ;
+    rdfs:comment "Classes and properties for construction project contract administration. Relationships (object properties) are not yet mapped."@en ;
+    owl:versionInfo "0.2" .
+
+#################################################################
+# Controlled value lists (literal enumerations)
+#################################################################
+
+kg:ClientTypeValue
+    a rdfs:Datatype ;
+    rdfs:label "Client Type Value"@en ;
+    owl:equivalentClass [
+        a rdfs:Datatype ;
+        owl:oneOf ( "Government" "Public Enterprise" "Private" "NGO / International Organization" "Individual" )
+    ] .
+
+kg:ConsultantRoleValue
+    a rdfs:Datatype ;
+    rdfs:label "Consultant Role Value"@en ;
+    owl:equivalentClass [
+        a rdfs:Datatype ;
+        owl:oneOf ( "Supervision" "Design" "Design and Supervision" "Project Management" )
+    ] .
+
+kg:LetterDirectionValue
+    a rdfs:Datatype ;
+    rdfs:label "Letter Direction Value"@en ;
+    owl:equivalentClass [
+        a rdfs:Datatype ;
+        owl:oneOf ( "Incoming" "Outgoing" )
+    ] .
+
+kg:DrawingDisciplineValue
+    a rdfs:Datatype ;
+    rdfs:label "Drawing Discipline Value"@en ;
+    owl:equivalentClass [
+        a rdfs:Datatype ;
+        owl:oneOf ( "Architectural" "Structural" "Civil Engineering" "Mechanical" "Plumbing" "Interior Design" "Geotechnical" "Electrical" "Infrastructure" )
+    ] .
+
+kg:ProgressUnitValue
+    a rdfs:Datatype ;
+    rdfs:label "Progress Unit Value"@en ;
+    owl:equivalentClass [
+        a rdfs:Datatype ;
+        owl:oneOf ( "Percent" "Amount" )
+    ] .
+
+#################################################################
+# Classes
+#################################################################
+
+kg:Project
+    a owl:Class ;
+    rdfs:label "Project"@en ;
+    rdfs:comment "A construction project. Central entity of the graph."@en .
+
+kg:BOQ
+    a owl:Class ;
+    rdfs:label "Bill of Quantities"@en ;
+    rdfs:comment "The priced Bill of Quantities of a project, recorded at total level."@en .
+
+kg:Client
+    a owl:Class ;
+    rdfs:label "Employer / Client"@en ;
+    rdfs:comment "The employer or client that procures the project. Client type is a key classifier and must be taken from the controlled list."@en .
+
+kg:MainContractor
+    a owl:Class ;
+    rdfs:label "Main Contractor"@en .
+
+kg:Subcontractor
+    a owl:Class ;
+    rdfs:label "Sub-contractor"@en .
+
+kg:Consultant
+    a owl:Class ;
+    rdfs:label "Consultant"@en .
+
+kg:Payment
+    a owl:Class ;
+    rdfs:label "Finance / Payment"@en ;
+    rdfs:comment "An executed interim payment (1st, 2nd, 3rd, ...). Records actual payments only, not proposed amounts or BOQ values."@en .
+
+kg:Letter
+    a owl:Class ;
+    rdfs:label "Letter"@en ;
+    rdfs:comment "Project correspondence, incoming or outgoing."@en .
+
+kg:Drawing
+    a owl:Class ;
+    rdfs:label "Drawing"@en .
+
+kg:AgreementClause
+    a owl:Class ;
+    rdfs:label "Agreement / Clause"@en ;
+    rdfs:comment "Agreement between the main contractor and a sub-contractor, recorded together with its clause references."@en .
+
+kg:Schedule
+    a owl:Class ;
+    rdfs:label "Schedule"@en .
+
+kg:ProgressReport
+    a owl:Class ;
+    rdfs:label "Progress Report"@en ;
+    rdfs:comment "Planned and executed totals keyed to a report date. Records are kept per report date; duplicate or incomplete records are not merged or aggregated."@en .
+
+kg:EOTClaim
+    a owl:Class ;
+    rdfs:label "Extension of Time Claim"@en ;
+    rdfs:comment "A request for extension of time. Contract baseline values are stored as a snapshot as stated in the claim."@en .
+
+#################################################################
+# Shared properties
+#################################################################
+
+kg:identifier
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "identifier"@en ;
+    rdfs:comment "Unique identifier of the record."@en ;
+    rdfs:range xsd:string .
+
+kg:name
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "name"@en ;
+    rdfs:comment "Official registered name."@en ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( kg:Project kg:Client kg:MainContractor kg:Subcontractor kg:Consultant ) ] ;
+    rdfs:range xsd:string .
+
+kg:alias
+    a owl:DatatypeProperty ;
+    rdfs:label "alias"@en ;
+    rdfs:comment "Alternative name, abbreviation or former name. Multi-valued."@en ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( kg:Client kg:MainContractor kg:Subcontractor kg:Consultant ) ] ;
+    rdfs:range xsd:string .
+
+kg:location
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "location"@en ;
+    rdfs:comment "City / region where the project is located or the party is based."@en ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( kg:Project kg:MainContractor kg:Subcontractor ) ] ;
+    rdfs:range xsd:string .
+
+kg:address
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "address"@en ;
+    rdfs:comment "Full postal / office address."@en ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( kg:MainContractor kg:Subcontractor ) ] ;
+    rdfs:range xsd:string .
+
+kg:currency
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "currency"@en ;
+    rdfs:comment "ISO 4217 currency code, e.g. ETB."@en ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( kg:BOQ kg:Payment kg:EOTClaim ) ] ;
+    rdfs:range xsd:string .
+
+kg:includesVAT
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "includes VAT"@en ;
+    rdfs:comment "True if the amount includes VAT."@en ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( kg:BOQ kg:Payment ) ] ;
+    rdfs:range xsd:boolean .
+
+kg:clauseLink
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "clause link"@en ;
+    rdfs:comment "Redirect link (URL) to the clause text."@en ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( kg:AgreementClause kg:EOTClaim ) ] ;
+    rdfs:range xsd:anyURI .
+
+#################################################################
+# Project
+#################################################################
+
+kg:durationDays
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "duration (days)"@en ;
+    rdfs:comment "Planned project duration in calendar days."@en ;
+    rdfs:domain kg:Project ;
+    rdfs:range xsd:nonNegativeInteger .
+
+#################################################################
+# BOQ
+#################################################################
+
+kg:boqTotalAmount
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "BOQ total amount"@en ;
+    rdfs:comment "Aggregate total of the priced BOQ."@en ;
+    rdfs:domain kg:BOQ ;
+    rdfs:range xsd:decimal .
+
+kg:boqDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "BOQ date"@en ;
+    rdfs:domain kg:BOQ ;
+    rdfs:range xsd:date .
+
+#################################################################
+# Client
+#################################################################
+
+kg:clientType
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "client type"@en ;
+    rdfs:comment "Key classifier. Must be one of the controlled values."@en ;
+    rdfs:domain kg:Client ;
+    rdfs:range kg:ClientTypeValue .
+
+#################################################################
+# Consultant
+#################################################################
+
+kg:consultantRole
+    a owl:DatatypeProperty ;
+    rdfs:label "consultant role"@en ;
+    rdfs:domain kg:Consultant ;
+    rdfs:range kg:ConsultantRoleValue .
+
+#################################################################
+# Finance / Payment
+#################################################################
+
+kg:interimNumber
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "interim payment number"@en ;
+    rdfs:comment "Sequence of the interim payment: 1 = 1st, 2 = 2nd, ..."@en ;
+    rdfs:domain kg:Payment ;
+    rdfs:range xsd:positiveInteger .
+
+kg:paymentDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "payment date"@en ;
+    rdfs:comment "Date the payment was executed."@en ;
+    rdfs:domain kg:Payment ;
+    rdfs:range xsd:date .
+
+kg:amountPaid
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "amount paid"@en ;
+    rdfs:comment "Executed (actually paid) amount."@en ;
+    rdfs:domain kg:Payment ;
+    rdfs:range xsd:decimal .
+
+#################################################################
+# Letter
+#################################################################
+
+kg:letterReference
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "letter reference number"@en ;
+    rdfs:domain kg:Letter ;
+    rdfs:range xsd:string .
+
+kg:letterDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "letter date"@en ;
+    rdfs:domain kg:Letter ;
+    rdfs:range xsd:date .
+
+kg:direction
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "direction"@en ;
+    rdfs:domain kg:Letter ;
+    rdfs:range kg:LetterDirectionValue .
+
+kg:subject
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "subject"@en ;
+    rdfs:domain kg:Letter ;
+    rdfs:range xsd:string .
+
+kg:sender
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "sender"@en ;
+    rdfs:domain kg:Letter ;
+    rdfs:range xsd:string .
+
+kg:recipient
+    a owl:DatatypeProperty ;
+    rdfs:label "recipient"@en ;
+    rdfs:domain kg:Letter ;
+    rdfs:range xsd:string .
+
+#################################################################
+# Drawing
+#################################################################
+
+kg:drawingNumber
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "drawing number"@en ;
+    rdfs:domain kg:Drawing ;
+    rdfs:range xsd:string .
+
+kg:drawingTitle
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "drawing title"@en ;
+    rdfs:domain kg:Drawing ;
+    rdfs:range xsd:string .
+
+kg:discipline
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "discipline"@en ;
+    rdfs:domain kg:Drawing ;
+    rdfs:range kg:DrawingDisciplineValue .
+
+kg:designer
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "designer"@en ;
+    rdfs:comment "Firm or person that produced the drawing."@en ;
+    rdfs:domain kg:Drawing ;
+    rdfs:range xsd:string .
+
+kg:revision
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "revision"@en ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( kg:Drawing kg:Schedule ) ] ;
+    rdfs:range xsd:string .
+
+kg:issueDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "issue date"@en ;
+    rdfs:domain kg:Drawing ;
+    rdfs:range xsd:date .
+
+#################################################################
+# Agreement / Clause
+#################################################################
+
+kg:agreementDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "agreement signing date"@en ;
+    rdfs:domain kg:AgreementClause ;
+    rdfs:range xsd:date .
+
+kg:mainContractorWitness
+    a owl:DatatypeProperty ;
+    rdfs:label "witness for main contractor"@en ;
+    rdfs:domain kg:AgreementClause ;
+    rdfs:range xsd:string .
+
+kg:subcontractorWitness
+    a owl:DatatypeProperty ;
+    rdfs:label "witness for sub-contractor"@en ;
+    rdfs:domain kg:AgreementClause ;
+    rdfs:range xsd:string .
+
+kg:clauseNumber
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "clause number"@en ;
+    rdfs:domain kg:AgreementClause ;
+    rdfs:range xsd:string .
+
+kg:clauseDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "clause date"@en ;
+    rdfs:domain kg:AgreementClause ;
+    rdfs:range xsd:date .
+
+#################################################################
+# Schedule
+#################################################################
+
+kg:dataDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "data date"@en ;
+    rdfs:comment "Status date the schedule is valid for."@en ;
+    rdfs:domain kg:Schedule ;
+    rdfs:range xsd:date .
+
+kg:plannedStartDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "planned start date"@en ;
+    rdfs:domain kg:Schedule ;
+    rdfs:range xsd:date .
+
+kg:plannedFinishDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "planned finish date"@en ;
+    rdfs:domain kg:Schedule ;
+    rdfs:range xsd:date .
+
+#################################################################
+# Progress Report
+#################################################################
+
+kg:reportDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "report date"@en ;
+    rdfs:comment "Reporting date (yyyy-mm-dd). Planned and executed totals are recorded against this date."@en ;
+    rdfs:domain kg:ProgressReport ;
+    rdfs:range xsd:date .
+
+kg:plannedTotal
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "planned total"@en ;
+    rdfs:domain kg:ProgressReport ;
+    rdfs:range xsd:decimal .
+
+kg:executedTotal
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "executed total"@en ;
+    rdfs:domain kg:ProgressReport ;
+    rdfs:range xsd:decimal .
+
+kg:progressUnit
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "progress unit"@en ;
+    rdfs:comment "Whether planned and executed totals are percentages or monetary amounts."@en ;
+    rdfs:domain kg:ProgressReport ;
+    rdfs:range kg:ProgressUnitValue .
+
+#################################################################
+# Extension of Time Claim
+#################################################################
+
+kg:claimDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "claim date"@en ;
+    rdfs:domain kg:EOTClaim ;
+    rdfs:range xsd:date .
+
+kg:contractSigningDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "date of signing agreement"@en ;
+    rdfs:domain kg:EOTClaim ;
+    rdfs:range xsd:date .
+
+kg:siteHandoverDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "date of site handover"@en ;
+    rdfs:domain kg:EOTClaim ;
+    rdfs:range xsd:date .
+
+kg:commencementDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "commencement date"@en ;
+    rdfs:domain kg:EOTClaim ;
+    rdfs:range xsd:date .
+
+kg:originalContractPriceInclVAT
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "original accepted contract price incl. VAT"@en ;
+    rdfs:domain kg:EOTClaim ;
+    rdfs:range xsd:decimal .
+
+kg:contractDurationDays
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "original contract duration (days)"@en ;
+    rdfs:domain kg:EOTClaim ;
+    rdfs:range xsd:nonNegativeInteger .
+
+kg:originalCompletionDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "original completion date"@en ;
+    rdfs:domain kg:EOTClaim ;
+    rdfs:range xsd:date .
+
+kg:previouslyApprovedEOTDays
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "previously approved EOT (days)"@en ;
+    rdfs:comment "Cumulative days approved under earlier claims."@en ;
+    rdfs:domain kg:EOTClaim ;
+    rdfs:range xsd:nonNegativeInteger .
+
+kg:requestedEOTDays
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "currently requested EOT (days)"@en ;
+    rdfs:domain kg:EOTClaim ;
+    rdfs:range xsd:nonNegativeInteger .
+
+kg:revisedCompletionDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:label "completion date as per requested EOT"@en ;
+    rdfs:domain kg:EOTClaim ;
+    rdfs:range xsd:date .
+
+kg:keyTakeaways
+    a owl:DatatypeProperty ;
+    rdfs:label "summary / key takeaways"@en ;
+    rdfs:domain kg:EOTClaim ;
+    rdfs:range xsd:string .

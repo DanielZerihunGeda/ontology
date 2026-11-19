@@ -1,0 +1,174 @@
+domain	kind	owner	name	type	required	allowedValues	search	from	to	derivedFrom	value	description
+*	setting		embeddingModel								text-embedding-3-small	Model that produces every summaryEmbedding.
+*	setting		embeddingDimensions								1536	Vector length of every summaryEmbedding.
+*	setting		similarityFunction								cosine	Similarity function of the vector indexes.
+*	setting		hybridAlpha								0.75	Default weight of the semantic score in hybrid search: alpha*semantic + (1-alpha)*lucene. Override per query.
+*	setting		listSeparator								|	Separator for list values (aliases, names, embeddings) inside one CSV cell.
+construction-contract-admin	node	Project										A construction project. Hub that every record links to.
+construction-contract-admin	property	Project	id	STRING	yes		key					Unique identifier of the Project.
+construction-contract-admin	property	Project	name	STRING	yes		fuzzy					Official project name.
+construction-contract-admin	property	Project	aliases	LIST<STRING>	no		fuzzy					Short names, abbreviations or former names of the project.
+construction-contract-admin	property	Project	summary	STRING	no		lucene|semantic					Short summary of the project scope. Source text for summaryEmbedding.
+construction-contract-admin	property	Project	summaryEmbedding	LIST<FLOAT>	no		embedding			summary		Embedding vector of summary (see embeddingModel / embeddingDimensions).
+construction-contract-admin	property	Project	status	STRING	no	Tendering|Ongoing|Suspended|Completed|Terminated	filter					Current project status.
+construction-contract-admin	property	Project	location	STRING	no		filter					City or region where the project is built.
+construction-contract-admin	property	Project	startDate	DATETIME	no		range					Actual start date.
+construction-contract-admin	property	Project	plannedCompletionDate	DATETIME	no		range					Planned completion date.
+construction-contract-admin	property	Project	actualCompletionDate	DATETIME	no		range					Actual completion date.
+construction-contract-admin	property	Project	durationDays	INTEGER	no		range					Planned duration in calendar days.
+construction-contract-admin	property	Project	areaSqm	FLOAT	no		range					Project area in square metres.
+construction-contract-admin	node	Organization										A company or public body taking part in projects as client, contractor or consultant. Its role is on the relationship to Project.
+construction-contract-admin	property	Organization	id	STRING	yes		key					Unique identifier of the Organization.
+construction-contract-admin	property	Organization	name	STRING	yes		fuzzy					Official registered name.
+construction-contract-admin	property	Organization	aliases	LIST<STRING>	no		fuzzy					Abbreviations, trading names or former names.
+construction-contract-admin	property	Organization	clientType	STRING	no	Government|Public Enterprise|Private|NGO / International Organization|Individual	filter					Client classification. Set for organizations that act as client.
+construction-contract-admin	property	Organization	address	STRING	no		none					Full postal or office address.
+construction-contract-admin	property	Organization	city	STRING	no		filter					City where the organization is based.
+construction-contract-admin	property	Organization	country	STRING	no		filter					Country where the organization is based.
+construction-contract-admin	property	Organization	email	STRING	no		none					Main contact email.
+construction-contract-admin	property	Organization	phoneNumber	STRING	no		none					Main contact phone number.
+construction-contract-admin	property	Organization	taxId	STRING	no		exact					Tax identification number (TIN).
+construction-contract-admin	node	Letter										Project correspondence, incoming or outgoing.
+construction-contract-admin	property	Letter	id	STRING	yes		key					Unique identifier of the Letter.
+construction-contract-admin	property	Letter	referenceNumber	STRING	no		exact					Letter reference number, exactly as printed.
+construction-contract-admin	property	Letter	referenceNumberNorm	STRING	no		exact			referenceNumber		referenceNumber upper-cased with spaces and separators removed, for exact lookup.
+construction-contract-admin	property	Letter	issueDate	DATETIME	no		range					Date written on the letter.
+construction-contract-admin	property	Letter	direction	STRING	no	Incoming|Outgoing	filter					Incoming or outgoing, seen from our organization.
+construction-contract-admin	property	Letter	subject	STRING	no		lucene					Subject line of the letter.
+construction-contract-admin	property	Letter	summary	STRING	no		lucene|semantic					Short summary of the letter content. Source text for summaryEmbedding.
+construction-contract-admin	property	Letter	summaryEmbedding	LIST<FLOAT>	no		embedding			summary		Embedding vector of summary (see embeddingModel / embeddingDimensions).
+construction-contract-admin	property	Letter	senderName	STRING	no		fuzzy					Sender as written on the letter. The resolved party is linked by SENT_BY.
+construction-contract-admin	property	Letter	recipientNames	LIST<STRING>	no		fuzzy					Recipients as written on the letter, including copied parties. Resolved parties are linked by ADDRESSED_TO.
+construction-contract-admin	property	Letter	sourceUrl	STRING	no		context					Link to the original source document. Context for the agent to cite or open; not searched.
+construction-contract-admin	node	EOTClaim										Extension of time claim. Contract baseline values are snapshots as stated in the claim.
+construction-contract-admin	property	EOTClaim	id	STRING	yes		key					Unique identifier of the EOTClaim.
+construction-contract-admin	property	EOTClaim	submittedDate	DATETIME	no		range					Date the claim was submitted.
+construction-contract-admin	property	EOTClaim	status	STRING	no	Submitted|Under Review|Approved|Partially Approved|Rejected	filter					Decision status of the claim.
+construction-contract-admin	property	EOTClaim	summary	STRING	no		lucene|semantic					Short summary of the claim: causes, events and key takeaways. Source text for summaryEmbedding.
+construction-contract-admin	property	EOTClaim	summaryEmbedding	LIST<FLOAT>	no		embedding			summary		Embedding vector of summary (see embeddingModel / embeddingDimensions).
+construction-contract-admin	property	EOTClaim	contractSigningDate	DATETIME	no		range					Contract signing date as stated in the claim.
+construction-contract-admin	property	EOTClaim	siteHandoverDate	DATETIME	no		range					Site handover date as stated in the claim.
+construction-contract-admin	property	EOTClaim	commencementDate	DATETIME	no		range					Commencement date as stated in the claim.
+construction-contract-admin	property	EOTClaim	originalContractPrice	FLOAT	no		range					Original accepted contract price as stated in the claim.
+construction-contract-admin	property	EOTClaim	currency	STRING	no		filter					ISO 4217 currency code of the amounts, e.g. ETB.
+construction-contract-admin	property	EOTClaim	includesVAT	BOOLEAN	no		filter					True if the amounts include VAT.
+construction-contract-admin	property	EOTClaim	originalDurationDays	INTEGER	no		range					Original contract duration in calendar days.
+construction-contract-admin	property	EOTClaim	originalCompletionDate	DATETIME	no		range					Original contractual completion date.
+construction-contract-admin	property	EOTClaim	previouslyApprovedExtensionDays	INTEGER	no		range					Cumulative days approved under earlier claims.
+construction-contract-admin	property	EOTClaim	requestedExtensionDays	INTEGER	no		range					Days requested by this claim.
+construction-contract-admin	property	EOTClaim	requestedCompletionDate	DATETIME	no		range					Completion date this claim asks for. Not an approved date.
+construction-contract-admin	property	EOTClaim	approvedExtensionDays	INTEGER	no		range					Days granted for this claim. Empty until decided.
+construction-contract-admin	property	EOTClaim	sourceUrl	STRING	no		context					Link to the original source document. Context for the agent to cite or open; not searched.
+construction-contract-admin	node	Agreement										A signed agreement between project parties, recorded with its clause reference.
+construction-contract-admin	property	Agreement	id	STRING	yes		key					Unique identifier of the Agreement.
+construction-contract-admin	property	Agreement	clauseNumber	STRING	no		exact					Clause number, exactly as printed.
+construction-contract-admin	property	Agreement	clauseNumberNorm	STRING	no		exact			clauseNumber		clauseNumber upper-cased with spaces and separators removed, for exact lookup.
+construction-contract-admin	property	Agreement	signedDate	DATETIME	no		range					Date the agreement was signed.
+construction-contract-admin	property	Agreement	clauseDate	DATETIME	no		range					Date of the clause.
+construction-contract-admin	property	Agreement	witnessNames	LIST<STRING>	no		none					Names of the witnesses, as written.
+construction-contract-admin	property	Agreement	summary	STRING	no		lucene|semantic					Short summary of what the agreement and clause say. Source text for summaryEmbedding.
+construction-contract-admin	property	Agreement	summaryEmbedding	LIST<FLOAT>	no		embedding			summary		Embedding vector of summary (see embeddingModel / embeddingDimensions).
+construction-contract-admin	property	Agreement	sourceUrl	STRING	no		context					Link to the original source document. Context for the agent to cite or open; not searched.
+construction-contract-admin	node	Proposal										A bid or proposal submitted for a project.
+construction-contract-admin	property	Proposal	id	STRING	yes		key					Unique identifier of the Proposal.
+construction-contract-admin	property	Proposal	referenceNumber	STRING	no		exact					Bid reference number, exactly as printed.
+construction-contract-admin	property	Proposal	referenceNumberNorm	STRING	no		exact			referenceNumber		referenceNumber upper-cased with spaces and separators removed, for exact lookup.
+construction-contract-admin	property	Proposal	title	STRING	no		lucene					Title of the bid.
+construction-contract-admin	property	Proposal	status	STRING	no	Draft|Submitted|Won|Lost|Withdrawn	filter					Outcome status of the bid.
+construction-contract-admin	property	Proposal	submittedDate	DATETIME	no		range					Date the bid was submitted.
+construction-contract-admin	property	Proposal	validUntil	DATETIME	no		range					Last day the bid remains valid.
+construction-contract-admin	property	Proposal	proposedAmount	FLOAT	no		range					Total amount offered in the bid.
+construction-contract-admin	property	Proposal	currency	STRING	no		filter					ISO 4217 currency code of the amounts, e.g. ETB.
+construction-contract-admin	property	Proposal	includesVAT	BOOLEAN	no		filter					True if the amounts include VAT.
+construction-contract-admin	property	Proposal	summary	STRING	no		lucene|semantic					Short summary of the proposal. Source text for summaryEmbedding.
+construction-contract-admin	property	Proposal	summaryEmbedding	LIST<FLOAT>	no		embedding			summary		Embedding vector of summary (see embeddingModel / embeddingDimensions).
+construction-contract-admin	property	Proposal	sourceUrl	STRING	no		context					Link to the original source document. Context for the agent to cite or open; not searched.
+construction-contract-admin	node	Drawing										A project drawing sheet.
+construction-contract-admin	property	Drawing	id	STRING	yes		key					Unique identifier of the Drawing.
+construction-contract-admin	property	Drawing	referenceNumber	STRING	no		exact					Drawing number as shown in the title block, exactly as printed.
+construction-contract-admin	property	Drawing	referenceNumberNorm	STRING	no		exact			referenceNumber		referenceNumber upper-cased with spaces and separators removed, for exact lookup.
+construction-contract-admin	property	Drawing	title	STRING	no		lucene					Drawing title.
+construction-contract-admin	property	Drawing	discipline	STRING	no	Architectural|Structural|Civil Engineering|Mechanical|Plumbing|Interior Design|Geotechnical|Electrical|Infrastructure	filter					Engineering discipline of the drawing.
+construction-contract-admin	property	Drawing	revision	STRING	no		exact					Revision code, e.g. A, B, 01.
+construction-contract-admin	property	Drawing	issueDate	DATETIME	no		range					Date the drawing revision was issued.
+construction-contract-admin	property	Drawing	designerName	STRING	no		fuzzy					Designer as written in the title block. The resolved party is linked by DESIGNED_BY.
+construction-contract-admin	property	Drawing	sourceUrl	STRING	no		context					Link to the original source document. Context for the agent to cite or open; not searched.
+construction-contract-admin	node	FinancialRecord										An individual financial document, transaction, obligation, allocation or reporting record. The sole financial node label; recordType distinguishes its nature. BOQ remains independent. Legacy Payment records reconcile to recordType=Payment while preserving IDs and provenance.
+construction-contract-admin	property	FinancialRecord	id	STRING	yes		key					Unique stable identifier of the FinancialRecord. Preserve confirmed existing IDs during reconciliation and migration.
+construction-contract-admin	property	FinancialRecord	recordType	STRING	yes	Invoice|Payment|Payroll|Expense|Cost|Budget|CreditNote|FinancialStatement|PurchaseOrder|Receipt|Other	filter					Required financial record type. All listed types use this single node label; BOQ remains separate.
+construction-contract-admin	property	FinancialRecord	referenceNumber	STRING	no		exact					Financial record reference exactly as printed; preserve leading zeros.
+construction-contract-admin	property	FinancialRecord	referenceNumberNorm	STRING	no		exact			referenceNumber		referenceNumber upper-cased with only ASCII A-Z and 0-9 retained.
+construction-contract-admin	property	FinancialRecord	description	STRING	no		lucene					Source-supported description of the individual financial record.
+construction-contract-admin	property	FinancialRecord	category	STRING	no		filter					Financial classification of the record, distinct from recordType.
+construction-contract-admin	property	FinancialRecord	amount	FLOAT	no		range					Primary source-reported monetary amount according to recordType. Preserve the distinction between invoiced, paid, incurred and allocated amounts.
+construction-contract-admin	property	FinancialRecord	currency	STRING	no		filter					Explicit valid uppercase ISO 4217 currency code.
+construction-contract-admin	property	FinancialRecord	taxAmount	FLOAT	no		range					Tax amount when applicable and explicitly evidenced.
+construction-contract-admin	property	FinancialRecord	includesVAT	BOOLEAN	no		filter					Whether the relevant amount includes VAT, only when evidenced; unstated remains unknown.
+construction-contract-admin	property	FinancialRecord	status	STRING	no		filter					Source-supported financial record status; no closed enum is specified.
+construction-contract-admin	property	FinancialRecord	effectiveDate	DATETIME	no		range					Date of the relevant financial event, e.g. invoice issue, payment, expense or payroll date.
+construction-contract-admin	property	FinancialRecord	dueDate	DATETIME	no		range					Due date of the financial obligation, when applicable and evidenced.
+construction-contract-admin	property	FinancialRecord	periodStart	DATETIME	no		range					Start of the applicable financial or reporting period.
+construction-contract-admin	property	FinancialRecord	periodEnd	DATETIME	no		range					End of the applicable financial or reporting period.
+construction-contract-admin	property	FinancialRecord	paymentMethod	STRING	no		filter					Source-supported payment method, when applicable.
+construction-contract-admin	property	FinancialRecord	transactionReference	STRING	no		exact					Source transaction reference exactly as recorded.
+construction-contract-admin	property	FinancialRecord	interimNumber	INTEGER	no		exact					Interim payment sequence number when applicable; at least 1.
+construction-contract-admin	property	FinancialRecord	paymentTerms	STRING	no		none					Source-supported payment terms, when applicable.
+construction-contract-admin	property	FinancialRecord	grossAmount	FLOAT	no		range					Explicit gross amount, kept distinct from primary and net amounts.
+construction-contract-admin	property	FinancialRecord	netAmount	FLOAT	no		range					Explicit net amount, kept distinct from primary and gross amounts.
+construction-contract-admin	property	FinancialRecord	deductions	FLOAT	no		range					Source-supported deductions when applicable.
+construction-contract-admin	property	FinancialRecord	costType	STRING	no		filter					Source-supported cost type, when applicable.
+construction-contract-admin	property	FinancialRecord	costCenter	STRING	no		filter					Source-supported cost center, when applicable.
+construction-contract-admin	property	FinancialRecord	fiscalYear	INTEGER	no		filter					Financial year as a lossless integer, when evidenced.
+construction-contract-admin	property	FinancialRecord	revisedAmount	FLOAT	no		range					Revised amount when explicitly evidenced, distinct from the original amount.
+construction-contract-admin	property	FinancialRecord	adjustmentReason	STRING	no		none					Source-supported reason for the financial adjustment.
+construction-contract-admin	property	FinancialRecord	statementType	STRING	no		filter					Source-supported financial statement type, when applicable.
+construction-contract-admin	property	FinancialRecord	summary	STRING	no		lucene|semantic					Factual summary specific to this record identity, type, purpose, amount, parties and dates. Persist only with its matching complete 1536-float summaryEmbedding.
+construction-contract-admin	property	FinancialRecord	summaryEmbedding	LIST<FLOAT>	no		embedding			summary		Complete 1536-float, finite, nonzero embedding of the exact summary text using text-embedding-3-small; persist the pair together.
+construction-contract-admin	property	FinancialRecord	sourceUrl	STRING	no		context					Genuine original source provenance; not searched.
+construction-contract-admin	node	BOQ										The priced bill of quantities of a project, recorded at total level.
+construction-contract-admin	property	BOQ	id	STRING	yes		key					Unique identifier of the BOQ.
+construction-contract-admin	property	BOQ	totalAmount	FLOAT	no		range					Total of the priced bill of quantities.
+construction-contract-admin	property	BOQ	currency	STRING	no		filter					ISO 4217 currency code of the amounts, e.g. ETB.
+construction-contract-admin	property	BOQ	includesVAT	BOOLEAN	no		filter					True if the amounts include VAT.
+construction-contract-admin	property	BOQ	preparedDate	DATETIME	no		range					Date the bill of quantities was priced.
+construction-contract-admin	property	BOQ	sourceUrl	STRING	no		context					Link to the original source document. Context for the agent to cite or open; not searched.
+construction-contract-admin	node	Schedule										A programme of works (baseline or update), valid as of its data date.
+construction-contract-admin	property	Schedule	id	STRING	yes		key					Unique identifier of the Schedule.
+construction-contract-admin	property	Schedule	dataDate	DATETIME	no		range					Status date the schedule is valid for.
+construction-contract-admin	property	Schedule	plannedStartDate	DATETIME	no		range					Planned start date.
+construction-contract-admin	property	Schedule	plannedFinishDate	DATETIME	no		range					Planned finish date.
+construction-contract-admin	property	Schedule	revision	STRING	no		exact					Revision code of the schedule.
+construction-contract-admin	property	Schedule	sourceUrl	STRING	no		context					Link to the original source document. Context for the agent to cite or open; not searched.
+construction-contract-admin	node	Report										An individual project or organizational report of any discipline. reportType is an open classification; progress measurements apply only when evidenced. Legacy ProgressReport records reconcile to Report with reportType=ProgressReport while preserving IDs and provenance.
+construction-contract-admin	property	Report	id	STRING	yes		key					Unique stable identifier of the Report. Preserve confirmed existing IDs during reconciliation and migration.
+construction-contract-admin	property	Report	reportType	STRING	yes		filter					Open classification of the report nature, e.g. ProgressReport, TechnicalReport or MonthlyReport. Example values are not separate node labels or a closed enum.
+construction-contract-admin	property	Report	referenceNumber	STRING	no		exact					Report reference number exactly as printed; preserve leading zeros.
+construction-contract-admin	property	Report	referenceNumberNorm	STRING	no		exact			referenceNumber		referenceNumber upper-cased with only ASCII A-Z and 0-9 retained.
+construction-contract-admin	property	Report	title	STRING	no		lucene					Title of the individual report.
+construction-contract-admin	property	Report	reportDate	DATETIME	no		range					Issue date of the report.
+construction-contract-admin	property	Report	periodStart	DATETIME	no		range					Start of the reporting period, when evidenced.
+construction-contract-admin	property	Report	periodEnd	DATETIME	no		range					End of the reporting period, when evidenced.
+construction-contract-admin	property	Report	revision	STRING	no		exact					Revision identifier; distinguish revisions from separately issued reports.
+construction-contract-admin	property	Report	status	STRING	no		filter					Report status exactly as supported by the source; no closed enum is specified.
+construction-contract-admin	property	Report	plannedTotal	FLOAT	no		range					Planned measurable progress total, only when applicable and evidenced.
+construction-contract-admin	property	Report	executedTotal	FLOAT	no		range					Executed measurable progress total, only when applicable and evidenced.
+construction-contract-admin	property	Report	unit	STRING	no		filter					Unit of the progress measurements when applicable; percent values use 0..100 with explicit fractional scale.
+construction-contract-admin	property	Report	summary	STRING	no		lucene|semantic					Factual summary specific to this report identity, type, context, period and findings. Persist only with its matching complete 1536-float summaryEmbedding.
+construction-contract-admin	property	Report	summaryEmbedding	LIST<FLOAT>	no		embedding			summary		Complete 1536-float, finite, nonzero embedding of the exact summary text using text-embedding-3-small; persist the pair together.
+construction-contract-admin	property	Report	sourceUrl	STRING	no		context					Genuine original source provenance; not searched.
+construction-contract-admin	relationship	FOR_PROJECT						BOQ|Letter|Drawing|Agreement|Schedule|Report|EOTClaim|Proposal|FinancialRecord	Project			The record belongs to this project.
+construction-contract-admin	relationship	CLIENT_OF						Organization	Project			The organization is the client (employer) of the project.
+construction-contract-admin	relationship	CONTRACTOR_OF						Organization	Project			The organization is the contractor of the project.
+construction-contract-admin	relationship	CONSULTANT_OF						Organization	Project			The organization is a consultant on the project.
+construction-contract-admin	property	CONSULTANT_OF	role	STRING	no	Supervision|Design|Design and Supervision|Project Management	filter					What the consultant does on this project.
+construction-contract-admin	relationship	SENT_BY						Letter	Organization			The organization that sent the letter.
+construction-contract-admin	relationship	ADDRESSED_TO						Letter	Organization			An organization the letter is addressed or copied to.
+construction-contract-admin	relationship	SUBMITTED_BY						EOTClaim|Proposal	Organization			The organization that submitted the claim or proposal.
+construction-contract-admin	relationship	DESIGNED_BY						Drawing	Organization			The organization that produced the drawing.
+construction-contract-admin	relationship	SIGNED_BY						Agreement	Organization			A party that signed the agreement.
+construction-contract-admin	relationship	CITES						EOTClaim	Agreement			An agreement clause the claim relies on.
+construction-contract-admin	relationship	PREPARED_BY						Report	Organization			Organization that prepared the report, independently resolved from evidence.
+construction-contract-admin	relationship	INVOLVES						FinancialRecord	Organization			Organization involved in the financial record; optional role identifies its evidenced participation.
+construction-contract-admin	property	INVOLVES	role	STRING	no	Issuer|Recipient|Payer|Payee|Beneficiary|Contractor	filter					Evidenced role of the Organization in the financial record.
+construction-contract-admin	relationship	REFERENCED_IN						FinancialRecord	Letter			Letter in which the financial record is referenced, when evidenced.
+construction-contract-admin	relationship	GOVERNED_BY						FinancialRecord	Agreement			Agreement governing the financial record, when evidenced.

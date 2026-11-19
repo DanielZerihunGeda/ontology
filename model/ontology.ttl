@@ -1,0 +1,1064 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix kg: <https://example.org/ontology#>.
+
+<https://example.org/ontology> a owl:Ontology;
+    rdfs:label "Knowledge Graph";
+    rdfs:comment "Construction contract administration. Generated from model/model.tsv; the Neo4j model is the master. Lists are stored as text here; relationship properties are listed in the relationship comment.";
+    owl:versionInfo "1.0".
+
+kg:Project a owl:Class;
+    rdfs:label "Project";
+    rdfs:comment "A construction project. Hub that every record links to.".
+
+kg:Project__id a owl:DatatypeProperty;
+    rdfs:domain kg:Project;
+    rdfs:label "id";
+    rdfs:range xsd:string;
+    rdfs:comment "Unique identifier of the Project.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Project__name a owl:DatatypeProperty;
+    rdfs:domain kg:Project;
+    rdfs:label "name";
+    rdfs:range xsd:string;
+    rdfs:comment "Official project name.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Project__aliases a owl:DatatypeProperty;
+    rdfs:domain kg:Project;
+    rdfs:label "aliases";
+    rdfs:range xsd:string;
+    rdfs:comment "Short names, abbreviations or former names of the project. Multi-valued.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Project__summary a owl:DatatypeProperty;
+    rdfs:domain kg:Project;
+    rdfs:label "summary";
+    rdfs:range xsd:string;
+    rdfs:comment "Short summary of the project scope. Source text for summaryEmbedding.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Project__status a owl:DatatypeProperty;
+    rdfs:domain kg:Project;
+    rdfs:label "status";
+    rdfs:range xsd:string;
+    rdfs:comment "Current project status. Allowed values: Tendering, Ongoing, Suspended, Completed, Terminated.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:location a owl:DatatypeProperty;
+    rdfs:domain kg:Project;
+    rdfs:label "location";
+    rdfs:range xsd:string;
+    rdfs:comment "City or region where the project is built.".
+
+kg:startDate a owl:DatatypeProperty;
+    rdfs:domain kg:Project;
+    rdfs:label "startDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Actual start date.".
+
+kg:plannedCompletionDate a owl:DatatypeProperty;
+    rdfs:domain kg:Project;
+    rdfs:label "plannedCompletionDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Planned completion date.".
+
+kg:actualCompletionDate a owl:DatatypeProperty;
+    rdfs:domain kg:Project;
+    rdfs:label "actualCompletionDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Actual completion date.".
+
+kg:durationDays a owl:DatatypeProperty;
+    rdfs:domain kg:Project;
+    rdfs:label "durationDays";
+    rdfs:range xsd:integer;
+    rdfs:comment "Planned duration in calendar days.".
+
+kg:areaSqm a owl:DatatypeProperty;
+    rdfs:domain kg:Project;
+    rdfs:label "areaSqm";
+    rdfs:range xsd:decimal;
+    rdfs:comment "Project area in square metres.".
+
+kg:Organization a owl:Class;
+    rdfs:label "Organization";
+    rdfs:comment "A company or public body taking part in projects as client, contractor or consultant. Its role is on the relationship to Project.".
+
+kg:Organization__id a owl:DatatypeProperty;
+    rdfs:domain kg:Organization;
+    rdfs:label "id";
+    rdfs:range xsd:string;
+    rdfs:comment "Unique identifier of the Organization.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Organization__name a owl:DatatypeProperty;
+    rdfs:domain kg:Organization;
+    rdfs:label "name";
+    rdfs:range xsd:string;
+    rdfs:comment "Official registered name.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Organization__aliases a owl:DatatypeProperty;
+    rdfs:domain kg:Organization;
+    rdfs:label "aliases";
+    rdfs:range xsd:string;
+    rdfs:comment "Abbreviations, trading names or former names. Multi-valued.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:clientType a owl:DatatypeProperty;
+    rdfs:domain kg:Organization;
+    rdfs:label "clientType";
+    rdfs:range xsd:string;
+    rdfs:comment "Client classification. Set for organizations that act as client. Allowed values: Government, Public Enterprise, Private, NGO / International Organization, Individual.".
+
+kg:address a owl:DatatypeProperty;
+    rdfs:domain kg:Organization;
+    rdfs:label "address";
+    rdfs:range xsd:string;
+    rdfs:comment "Full postal or office address.".
+
+kg:city a owl:DatatypeProperty;
+    rdfs:domain kg:Organization;
+    rdfs:label "city";
+    rdfs:range xsd:string;
+    rdfs:comment "City where the organization is based.".
+
+kg:country a owl:DatatypeProperty;
+    rdfs:domain kg:Organization;
+    rdfs:label "country";
+    rdfs:range xsd:string;
+    rdfs:comment "Country where the organization is based.".
+
+kg:email a owl:DatatypeProperty;
+    rdfs:domain kg:Organization;
+    rdfs:label "email";
+    rdfs:range xsd:string;
+    rdfs:comment "Main contact email.".
+
+kg:phoneNumber a owl:DatatypeProperty;
+    rdfs:domain kg:Organization;
+    rdfs:label "phoneNumber";
+    rdfs:range xsd:string;
+    rdfs:comment "Main contact phone number.".
+
+kg:taxId a owl:DatatypeProperty;
+    rdfs:domain kg:Organization;
+    rdfs:label "taxId";
+    rdfs:range xsd:string;
+    rdfs:comment "Tax identification number (TIN).".
+
+kg:Letter a owl:Class;
+    rdfs:label "Letter";
+    rdfs:comment "Project correspondence, incoming or outgoing.".
+
+kg:Letter__id a owl:DatatypeProperty;
+    rdfs:domain kg:Letter;
+    rdfs:label "id";
+    rdfs:range xsd:string;
+    rdfs:comment "Unique identifier of the Letter.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Letter__referenceNumber a owl:DatatypeProperty;
+    rdfs:domain kg:Letter;
+    rdfs:label "referenceNumber";
+    rdfs:range xsd:string;
+    rdfs:comment "Letter reference number, exactly as printed.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Letter__referenceNumberNorm a owl:DatatypeProperty;
+    rdfs:domain kg:Letter;
+    rdfs:label "referenceNumberNorm";
+    rdfs:range xsd:string;
+    rdfs:comment "referenceNumber upper-cased with spaces and separators removed, for exact lookup.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Letter__issueDate a owl:DatatypeProperty;
+    rdfs:domain kg:Letter;
+    rdfs:label "issueDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Date written on the letter.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:direction a owl:DatatypeProperty;
+    rdfs:domain kg:Letter;
+    rdfs:label "direction";
+    rdfs:range xsd:string;
+    rdfs:comment "Incoming or outgoing, seen from our organization. Allowed values: Incoming, Outgoing.".
+
+kg:subject a owl:DatatypeProperty;
+    rdfs:domain kg:Letter;
+    rdfs:label "subject";
+    rdfs:range xsd:string;
+    rdfs:comment "Subject line of the letter.".
+
+kg:Letter__summary a owl:DatatypeProperty;
+    rdfs:domain kg:Letter;
+    rdfs:label "summary";
+    rdfs:range xsd:string;
+    rdfs:comment "Short summary of the letter content. Source text for summaryEmbedding.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:senderName a owl:DatatypeProperty;
+    rdfs:domain kg:Letter;
+    rdfs:label "senderName";
+    rdfs:range xsd:string;
+    rdfs:comment "Sender as written on the letter. The resolved party is linked by SENT_BY.".
+
+kg:recipientNames a owl:DatatypeProperty;
+    rdfs:domain kg:Letter;
+    rdfs:label "recipientNames";
+    rdfs:range xsd:string;
+    rdfs:comment "Recipients as written on the letter, including copied parties. Resolved parties are linked by ADDRESSED_TO. Multi-valued.".
+
+kg:Letter__sourceUrl a owl:DatatypeProperty;
+    rdfs:domain kg:Letter;
+    rdfs:label "sourceUrl";
+    rdfs:range xsd:string;
+    rdfs:comment "Link to the original source document. Context for the agent to cite or open; not searched.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:EOTClaim a owl:Class;
+    rdfs:label "EOTClaim";
+    rdfs:comment "Extension of time claim. Contract baseline values are snapshots as stated in the claim.".
+
+kg:EOTClaim__id a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "id";
+    rdfs:range xsd:string;
+    rdfs:comment "Unique identifier of the EOTClaim.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:EOTClaim__submittedDate a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "submittedDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Date the claim was submitted.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:EOTClaim__status a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "status";
+    rdfs:range xsd:string;
+    rdfs:comment "Decision status of the claim. Allowed values: Submitted, Under Review, Approved, Partially Approved, Rejected.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:EOTClaim__summary a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "summary";
+    rdfs:range xsd:string;
+    rdfs:comment "Short summary of the claim: causes, events and key takeaways. Source text for summaryEmbedding.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:contractSigningDate a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "contractSigningDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Contract signing date as stated in the claim.".
+
+kg:siteHandoverDate a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "siteHandoverDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Site handover date as stated in the claim.".
+
+kg:commencementDate a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "commencementDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Commencement date as stated in the claim.".
+
+kg:originalContractPrice a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "originalContractPrice";
+    rdfs:range xsd:decimal;
+    rdfs:comment "Original accepted contract price as stated in the claim.".
+
+kg:EOTClaim__currency a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "currency";
+    rdfs:range xsd:string;
+    rdfs:comment "ISO 4217 currency code of the amounts, e.g. ETB.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:EOTClaim__includesVAT a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "includesVAT";
+    rdfs:range xsd:boolean;
+    rdfs:comment "True if the amounts include VAT.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:originalDurationDays a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "originalDurationDays";
+    rdfs:range xsd:integer;
+    rdfs:comment "Original contract duration in calendar days.".
+
+kg:originalCompletionDate a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "originalCompletionDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Original contractual completion date.".
+
+kg:previouslyApprovedExtensionDays a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "previouslyApprovedExtensionDays";
+    rdfs:range xsd:integer;
+    rdfs:comment "Cumulative days approved under earlier claims.".
+
+kg:requestedExtensionDays a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "requestedExtensionDays";
+    rdfs:range xsd:integer;
+    rdfs:comment "Days requested by this claim.".
+
+kg:requestedCompletionDate a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "requestedCompletionDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Completion date this claim asks for. Not an approved date.".
+
+kg:approvedExtensionDays a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "approvedExtensionDays";
+    rdfs:range xsd:integer;
+    rdfs:comment "Days granted for this claim. Empty until decided.".
+
+kg:EOTClaim__sourceUrl a owl:DatatypeProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "sourceUrl";
+    rdfs:range xsd:string;
+    rdfs:comment "Link to the original source document. Context for the agent to cite or open; not searched.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Agreement a owl:Class;
+    rdfs:label "Agreement";
+    rdfs:comment "A signed agreement between project parties, recorded with its clause reference.".
+
+kg:Agreement__id a owl:DatatypeProperty;
+    rdfs:domain kg:Agreement;
+    rdfs:label "id";
+    rdfs:range xsd:string;
+    rdfs:comment "Unique identifier of the Agreement.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:clauseNumber a owl:DatatypeProperty;
+    rdfs:domain kg:Agreement;
+    rdfs:label "clauseNumber";
+    rdfs:range xsd:string;
+    rdfs:comment "Clause number, exactly as printed.".
+
+kg:clauseNumberNorm a owl:DatatypeProperty;
+    rdfs:domain kg:Agreement;
+    rdfs:label "clauseNumberNorm";
+    rdfs:range xsd:string;
+    rdfs:comment "clauseNumber upper-cased with spaces and separators removed, for exact lookup.".
+
+kg:signedDate a owl:DatatypeProperty;
+    rdfs:domain kg:Agreement;
+    rdfs:label "signedDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Date the agreement was signed.".
+
+kg:clauseDate a owl:DatatypeProperty;
+    rdfs:domain kg:Agreement;
+    rdfs:label "clauseDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Date of the clause.".
+
+kg:witnessNames a owl:DatatypeProperty;
+    rdfs:domain kg:Agreement;
+    rdfs:label "witnessNames";
+    rdfs:range xsd:string;
+    rdfs:comment "Names of the witnesses, as written. Multi-valued.".
+
+kg:Agreement__summary a owl:DatatypeProperty;
+    rdfs:domain kg:Agreement;
+    rdfs:label "summary";
+    rdfs:range xsd:string;
+    rdfs:comment "Short summary of what the agreement and clause say. Source text for summaryEmbedding.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Agreement__sourceUrl a owl:DatatypeProperty;
+    rdfs:domain kg:Agreement;
+    rdfs:label "sourceUrl";
+    rdfs:range xsd:string;
+    rdfs:comment "Link to the original source document. Context for the agent to cite or open; not searched.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Proposal a owl:Class;
+    rdfs:label "Proposal";
+    rdfs:comment "A bid or proposal submitted for a project.".
+
+kg:Proposal__id a owl:DatatypeProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "id";
+    rdfs:range xsd:string;
+    rdfs:comment "Unique identifier of the Proposal.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Proposal__referenceNumber a owl:DatatypeProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "referenceNumber";
+    rdfs:range xsd:string;
+    rdfs:comment "Bid reference number, exactly as printed.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Proposal__referenceNumberNorm a owl:DatatypeProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "referenceNumberNorm";
+    rdfs:range xsd:string;
+    rdfs:comment "referenceNumber upper-cased with spaces and separators removed, for exact lookup.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Proposal__title a owl:DatatypeProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "title";
+    rdfs:range xsd:string;
+    rdfs:comment "Title of the bid.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Proposal__status a owl:DatatypeProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "status";
+    rdfs:range xsd:string;
+    rdfs:comment "Outcome status of the bid. Allowed values: Draft, Submitted, Won, Lost, Withdrawn.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Proposal__submittedDate a owl:DatatypeProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "submittedDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Date the bid was submitted.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:validUntil a owl:DatatypeProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "validUntil";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Last day the bid remains valid.".
+
+kg:proposedAmount a owl:DatatypeProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "proposedAmount";
+    rdfs:range xsd:decimal;
+    rdfs:comment "Total amount offered in the bid.".
+
+kg:Proposal__currency a owl:DatatypeProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "currency";
+    rdfs:range xsd:string;
+    rdfs:comment "ISO 4217 currency code of the amounts, e.g. ETB.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Proposal__includesVAT a owl:DatatypeProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "includesVAT";
+    rdfs:range xsd:boolean;
+    rdfs:comment "True if the amounts include VAT.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Proposal__summary a owl:DatatypeProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "summary";
+    rdfs:range xsd:string;
+    rdfs:comment "Short summary of the proposal. Source text for summaryEmbedding.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Proposal__sourceUrl a owl:DatatypeProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "sourceUrl";
+    rdfs:range xsd:string;
+    rdfs:comment "Link to the original source document. Context for the agent to cite or open; not searched.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Drawing a owl:Class;
+    rdfs:label "Drawing";
+    rdfs:comment "A project drawing sheet.".
+
+kg:Drawing__id a owl:DatatypeProperty;
+    rdfs:domain kg:Drawing;
+    rdfs:label "id";
+    rdfs:range xsd:string;
+    rdfs:comment "Unique identifier of the Drawing.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Drawing__referenceNumber a owl:DatatypeProperty;
+    rdfs:domain kg:Drawing;
+    rdfs:label "referenceNumber";
+    rdfs:range xsd:string;
+    rdfs:comment "Drawing number as shown in the title block, exactly as printed.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Drawing__referenceNumberNorm a owl:DatatypeProperty;
+    rdfs:domain kg:Drawing;
+    rdfs:label "referenceNumberNorm";
+    rdfs:range xsd:string;
+    rdfs:comment "referenceNumber upper-cased with spaces and separators removed, for exact lookup.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Drawing__title a owl:DatatypeProperty;
+    rdfs:domain kg:Drawing;
+    rdfs:label "title";
+    rdfs:range xsd:string;
+    rdfs:comment "Drawing title.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:discipline a owl:DatatypeProperty;
+    rdfs:domain kg:Drawing;
+    rdfs:label "discipline";
+    rdfs:range xsd:string;
+    rdfs:comment "Engineering discipline of the drawing. Allowed values: Architectural, Structural, Civil Engineering, Mechanical, Plumbing, Interior Design, Geotechnical, Electrical, Infrastructure.".
+
+kg:Drawing__revision a owl:DatatypeProperty;
+    rdfs:domain kg:Drawing;
+    rdfs:label "revision";
+    rdfs:range xsd:string;
+    rdfs:comment "Revision code, e.g. A, B, 01.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Drawing__issueDate a owl:DatatypeProperty;
+    rdfs:domain kg:Drawing;
+    rdfs:label "issueDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Date the drawing revision was issued.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:designerName a owl:DatatypeProperty;
+    rdfs:domain kg:Drawing;
+    rdfs:label "designerName";
+    rdfs:range xsd:string;
+    rdfs:comment "Designer as written in the title block. The resolved party is linked by DESIGNED_BY.".
+
+kg:Drawing__sourceUrl a owl:DatatypeProperty;
+    rdfs:domain kg:Drawing;
+    rdfs:label "sourceUrl";
+    rdfs:range xsd:string;
+    rdfs:comment "Link to the original source document. Context for the agent to cite or open; not searched.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:FinancialRecord a owl:Class;
+    rdfs:label "FinancialRecord";
+    rdfs:comment "An individual financial document, transaction, obligation, allocation or reporting record. The sole financial node label; recordType distinguishes its nature. BOQ remains independent. Legacy Payment records reconcile to recordType=Payment while preserving IDs and provenance.".
+
+kg:FinancialRecord__id a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "id";
+    rdfs:range xsd:string;
+    rdfs:comment "Unique stable identifier of the FinancialRecord. Preserve confirmed existing IDs during reconciliation and migration.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:recordType a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "recordType";
+    rdfs:range xsd:string;
+    rdfs:comment "Required financial record type. All listed types use this single node label; BOQ remains separate. Allowed values: Invoice, Payment, Payroll, Expense, Cost, Budget, CreditNote, FinancialStatement, PurchaseOrder, Receipt, Other.".
+
+kg:FinancialRecord__referenceNumber a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "referenceNumber";
+    rdfs:range xsd:string;
+    rdfs:comment "Financial record reference exactly as printed; preserve leading zeros.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:FinancialRecord__referenceNumberNorm a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "referenceNumberNorm";
+    rdfs:range xsd:string;
+    rdfs:comment "referenceNumber upper-cased with only ASCII A-Z and 0-9 retained.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:description a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "description";
+    rdfs:range xsd:string;
+    rdfs:comment "Source-supported description of the individual financial record.".
+
+kg:category a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "category";
+    rdfs:range xsd:string;
+    rdfs:comment "Financial classification of the record, distinct from recordType.".
+
+kg:amount a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "amount";
+    rdfs:range xsd:decimal;
+    rdfs:comment "Primary source-reported monetary amount according to recordType. Preserve the distinction between invoiced, paid, incurred and allocated amounts.".
+
+kg:FinancialRecord__currency a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "currency";
+    rdfs:range xsd:string;
+    rdfs:comment "Explicit valid uppercase ISO 4217 currency code.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:taxAmount a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "taxAmount";
+    rdfs:range xsd:decimal;
+    rdfs:comment "Tax amount when applicable and explicitly evidenced.".
+
+kg:FinancialRecord__includesVAT a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "includesVAT";
+    rdfs:range xsd:boolean;
+    rdfs:comment "Whether the relevant amount includes VAT, only when evidenced; unstated remains unknown.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:FinancialRecord__status a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "status";
+    rdfs:range xsd:string;
+    rdfs:comment "Source-supported financial record status; no closed enum is specified.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:effectiveDate a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "effectiveDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Date of the relevant financial event, e.g. invoice issue, payment, expense or payroll date.".
+
+kg:dueDate a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "dueDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Due date of the financial obligation, when applicable and evidenced.".
+
+kg:FinancialRecord__periodStart a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "periodStart";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Start of the applicable financial or reporting period.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:FinancialRecord__periodEnd a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "periodEnd";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "End of the applicable financial or reporting period.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:paymentMethod a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "paymentMethod";
+    rdfs:range xsd:string;
+    rdfs:comment "Source-supported payment method, when applicable.".
+
+kg:transactionReference a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "transactionReference";
+    rdfs:range xsd:string;
+    rdfs:comment "Source transaction reference exactly as recorded.".
+
+kg:interimNumber a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "interimNumber";
+    rdfs:range xsd:integer;
+    rdfs:comment "Interim payment sequence number when applicable; at least 1.".
+
+kg:paymentTerms a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "paymentTerms";
+    rdfs:range xsd:string;
+    rdfs:comment "Source-supported payment terms, when applicable.".
+
+kg:grossAmount a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "grossAmount";
+    rdfs:range xsd:decimal;
+    rdfs:comment "Explicit gross amount, kept distinct from primary and net amounts.".
+
+kg:netAmount a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "netAmount";
+    rdfs:range xsd:decimal;
+    rdfs:comment "Explicit net amount, kept distinct from primary and gross amounts.".
+
+kg:deductions a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "deductions";
+    rdfs:range xsd:decimal;
+    rdfs:comment "Source-supported deductions when applicable.".
+
+kg:costType a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "costType";
+    rdfs:range xsd:string;
+    rdfs:comment "Source-supported cost type, when applicable.".
+
+kg:costCenter a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "costCenter";
+    rdfs:range xsd:string;
+    rdfs:comment "Source-supported cost center, when applicable.".
+
+kg:fiscalYear a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "fiscalYear";
+    rdfs:range xsd:integer;
+    rdfs:comment "Financial year as a lossless integer, when evidenced.".
+
+kg:revisedAmount a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "revisedAmount";
+    rdfs:range xsd:decimal;
+    rdfs:comment "Revised amount when explicitly evidenced, distinct from the original amount.".
+
+kg:adjustmentReason a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "adjustmentReason";
+    rdfs:range xsd:string;
+    rdfs:comment "Source-supported reason for the financial adjustment.".
+
+kg:statementType a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "statementType";
+    rdfs:range xsd:string;
+    rdfs:comment "Source-supported financial statement type, when applicable.".
+
+kg:FinancialRecord__summary a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "summary";
+    rdfs:range xsd:string;
+    rdfs:comment "Factual summary specific to this record identity, type, purpose, amount, parties and dates. Persist only with its matching complete 1536-float summaryEmbedding.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:FinancialRecord__sourceUrl a owl:DatatypeProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "sourceUrl";
+    rdfs:range xsd:string;
+    rdfs:comment "Genuine original source provenance; not searched.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:BOQ a owl:Class;
+    rdfs:label "BOQ";
+    rdfs:comment "The priced bill of quantities of a project, recorded at total level.".
+
+kg:BOQ__id a owl:DatatypeProperty;
+    rdfs:domain kg:BOQ;
+    rdfs:label "id";
+    rdfs:range xsd:string;
+    rdfs:comment "Unique identifier of the BOQ.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:totalAmount a owl:DatatypeProperty;
+    rdfs:domain kg:BOQ;
+    rdfs:label "totalAmount";
+    rdfs:range xsd:decimal;
+    rdfs:comment "Total of the priced bill of quantities.".
+
+kg:BOQ__currency a owl:DatatypeProperty;
+    rdfs:domain kg:BOQ;
+    rdfs:label "currency";
+    rdfs:range xsd:string;
+    rdfs:comment "ISO 4217 currency code of the amounts, e.g. ETB.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:BOQ__includesVAT a owl:DatatypeProperty;
+    rdfs:domain kg:BOQ;
+    rdfs:label "includesVAT";
+    rdfs:range xsd:boolean;
+    rdfs:comment "True if the amounts include VAT.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:preparedDate a owl:DatatypeProperty;
+    rdfs:domain kg:BOQ;
+    rdfs:label "preparedDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Date the bill of quantities was priced.".
+
+kg:BOQ__sourceUrl a owl:DatatypeProperty;
+    rdfs:domain kg:BOQ;
+    rdfs:label "sourceUrl";
+    rdfs:range xsd:string;
+    rdfs:comment "Link to the original source document. Context for the agent to cite or open; not searched.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Schedule a owl:Class;
+    rdfs:label "Schedule";
+    rdfs:comment "A programme of works (baseline or update), valid as of its data date.".
+
+kg:Schedule__id a owl:DatatypeProperty;
+    rdfs:domain kg:Schedule;
+    rdfs:label "id";
+    rdfs:range xsd:string;
+    rdfs:comment "Unique identifier of the Schedule.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:dataDate a owl:DatatypeProperty;
+    rdfs:domain kg:Schedule;
+    rdfs:label "dataDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Status date the schedule is valid for.".
+
+kg:plannedStartDate a owl:DatatypeProperty;
+    rdfs:domain kg:Schedule;
+    rdfs:label "plannedStartDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Planned start date.".
+
+kg:plannedFinishDate a owl:DatatypeProperty;
+    rdfs:domain kg:Schedule;
+    rdfs:label "plannedFinishDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Planned finish date.".
+
+kg:Schedule__revision a owl:DatatypeProperty;
+    rdfs:domain kg:Schedule;
+    rdfs:label "revision";
+    rdfs:range xsd:string;
+    rdfs:comment "Revision code of the schedule.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Schedule__sourceUrl a owl:DatatypeProperty;
+    rdfs:domain kg:Schedule;
+    rdfs:label "sourceUrl";
+    rdfs:range xsd:string;
+    rdfs:comment "Link to the original source document. Context for the agent to cite or open; not searched.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Report a owl:Class;
+    rdfs:label "Report";
+    rdfs:comment "An individual project or organizational report of any discipline. reportType is an open classification; progress measurements apply only when evidenced. Legacy ProgressReport records reconcile to Report with reportType=ProgressReport while preserving IDs and provenance.".
+
+kg:Report__id a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "id";
+    rdfs:range xsd:string;
+    rdfs:comment "Unique stable identifier of the Report. Preserve confirmed existing IDs during reconciliation and migration.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:reportType a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "reportType";
+    rdfs:range xsd:string;
+    rdfs:comment "Open classification of the report nature, e.g. ProgressReport, TechnicalReport or MonthlyReport. Example values are not separate node labels or a closed enum.".
+
+kg:Report__referenceNumber a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "referenceNumber";
+    rdfs:range xsd:string;
+    rdfs:comment "Report reference number exactly as printed; preserve leading zeros.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Report__referenceNumberNorm a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "referenceNumberNorm";
+    rdfs:range xsd:string;
+    rdfs:comment "referenceNumber upper-cased with only ASCII A-Z and 0-9 retained.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Report__title a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "title";
+    rdfs:range xsd:string;
+    rdfs:comment "Title of the individual report.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:reportDate a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "reportDate";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Issue date of the report.".
+
+kg:Report__periodStart a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "periodStart";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "Start of the reporting period, when evidenced.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Report__periodEnd a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "periodEnd";
+    rdfs:range xsd:dateTime;
+    rdfs:comment "End of the reporting period, when evidenced.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Report__revision a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "revision";
+    rdfs:range xsd:string;
+    rdfs:comment "Revision identifier; distinguish revisions from separately issued reports.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Report__status a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "status";
+    rdfs:range xsd:string;
+    rdfs:comment "Report status exactly as supported by the source; no closed enum is specified.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:plannedTotal a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "plannedTotal";
+    rdfs:range xsd:decimal;
+    rdfs:comment "Planned measurable progress total, only when applicable and evidenced.".
+
+kg:executedTotal a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "executedTotal";
+    rdfs:range xsd:decimal;
+    rdfs:comment "Executed measurable progress total, only when applicable and evidenced.".
+
+kg:unit a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "unit";
+    rdfs:range xsd:string;
+    rdfs:comment "Unit of the progress measurements when applicable; percent values use 0..100 with explicit fractional scale.".
+
+kg:Report__summary a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "summary";
+    rdfs:range xsd:string;
+    rdfs:comment "Factual summary specific to this report identity, type, context, period and findings. Persist only with its matching complete 1536-float summaryEmbedding.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:Report__sourceUrl a owl:DatatypeProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "sourceUrl";
+    rdfs:range xsd:string;
+    rdfs:comment "Genuine original source provenance; not searched.";
+    <urn:fabric-internal:qualifiedPropertyName> "true".
+
+kg:FOR_PROJECT__BOQ a owl:ObjectProperty;
+    rdfs:domain kg:BOQ;
+    rdfs:label "FOR_PROJECT";
+    rdfs:range kg:Project;
+    rdfs:comment "The record belongs to this project.".
+
+kg:FOR_PROJECT__Letter a owl:ObjectProperty;
+    rdfs:domain kg:Letter;
+    rdfs:label "FOR_PROJECT";
+    rdfs:range kg:Project;
+    rdfs:comment "The record belongs to this project.".
+
+kg:FOR_PROJECT__Drawing a owl:ObjectProperty;
+    rdfs:domain kg:Drawing;
+    rdfs:label "FOR_PROJECT";
+    rdfs:range kg:Project;
+    rdfs:comment "The record belongs to this project.".
+
+kg:FOR_PROJECT__Agreement a owl:ObjectProperty;
+    rdfs:domain kg:Agreement;
+    rdfs:label "FOR_PROJECT";
+    rdfs:range kg:Project;
+    rdfs:comment "The record belongs to this project.".
+
+kg:FOR_PROJECT__Schedule a owl:ObjectProperty;
+    rdfs:domain kg:Schedule;
+    rdfs:label "FOR_PROJECT";
+    rdfs:range kg:Project;
+    rdfs:comment "The record belongs to this project.".
+
+kg:FOR_PROJECT__Report a owl:ObjectProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "FOR_PROJECT";
+    rdfs:range kg:Project;
+    rdfs:comment "The record belongs to this project.".
+
+kg:FOR_PROJECT__EOTClaim a owl:ObjectProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "FOR_PROJECT";
+    rdfs:range kg:Project;
+    rdfs:comment "The record belongs to this project.".
+
+kg:FOR_PROJECT__Proposal a owl:ObjectProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "FOR_PROJECT";
+    rdfs:range kg:Project;
+    rdfs:comment "The record belongs to this project.".
+
+kg:FOR_PROJECT__FinancialRecord a owl:ObjectProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "FOR_PROJECT";
+    rdfs:range kg:Project;
+    rdfs:comment "The record belongs to this project.".
+
+kg:CLIENT_OF a owl:ObjectProperty;
+    rdfs:domain kg:Organization;
+    rdfs:label "CLIENT_OF";
+    rdfs:range kg:Project;
+    rdfs:comment "The organization is the client (employer) of the project.".
+
+kg:CONTRACTOR_OF a owl:ObjectProperty;
+    rdfs:domain kg:Organization;
+    rdfs:label "CONTRACTOR_OF";
+    rdfs:range kg:Project;
+    rdfs:comment "The organization is the contractor of the project.".
+
+kg:CONSULTANT_OF a owl:ObjectProperty;
+    rdfs:domain kg:Organization;
+    rdfs:label "CONSULTANT_OF";
+    rdfs:range kg:Project;
+    rdfs:comment "The organization is a consultant on the project. Properties: role (Supervision, Design, Design and Supervision, Project Management).".
+
+kg:SENT_BY a owl:ObjectProperty;
+    rdfs:domain kg:Letter;
+    rdfs:label "SENT_BY";
+    rdfs:range kg:Organization;
+    rdfs:comment "The organization that sent the letter.".
+
+kg:ADDRESSED_TO a owl:ObjectProperty;
+    rdfs:domain kg:Letter;
+    rdfs:label "ADDRESSED_TO";
+    rdfs:range kg:Organization;
+    rdfs:comment "An organization the letter is addressed or copied to.".
+
+kg:SUBMITTED_BY__EOTClaim a owl:ObjectProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "SUBMITTED_BY";
+    rdfs:range kg:Organization;
+    rdfs:comment "The organization that submitted the claim or proposal.".
+
+kg:SUBMITTED_BY__Proposal a owl:ObjectProperty;
+    rdfs:domain kg:Proposal;
+    rdfs:label "SUBMITTED_BY";
+    rdfs:range kg:Organization;
+    rdfs:comment "The organization that submitted the claim or proposal.".
+
+kg:DESIGNED_BY a owl:ObjectProperty;
+    rdfs:domain kg:Drawing;
+    rdfs:label "DESIGNED_BY";
+    rdfs:range kg:Organization;
+    rdfs:comment "The organization that produced the drawing.".
+
+kg:SIGNED_BY a owl:ObjectProperty;
+    rdfs:domain kg:Agreement;
+    rdfs:label "SIGNED_BY";
+    rdfs:range kg:Organization;
+    rdfs:comment "A party that signed the agreement.".
+
+kg:CITES a owl:ObjectProperty;
+    rdfs:domain kg:EOTClaim;
+    rdfs:label "CITES";
+    rdfs:range kg:Agreement;
+    rdfs:comment "An agreement clause the claim relies on.".
+
+kg:PREPARED_BY a owl:ObjectProperty;
+    rdfs:domain kg:Report;
+    rdfs:label "PREPARED_BY";
+    rdfs:range kg:Organization;
+    rdfs:comment "Organization that prepared the report, independently resolved from evidence.".
+
+kg:INVOLVES a owl:ObjectProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "INVOLVES";
+    rdfs:range kg:Organization;
+    rdfs:comment "Organization involved in the financial record; optional role identifies its evidenced participation. Properties: role (Issuer, Recipient, Payer, Payee, Beneficiary, Contractor).".
+
+kg:REFERENCED_IN a owl:ObjectProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "REFERENCED_IN";
+    rdfs:range kg:Letter;
+    rdfs:comment "Letter in which the financial record is referenced, when evidenced.".
+
+kg:GOVERNED_BY a owl:ObjectProperty;
+    rdfs:domain kg:FinancialRecord;
+    rdfs:label "GOVERNED_BY";
+    rdfs:range kg:Agreement;
+    rdfs:comment "Agreement governing the financial record, when evidenced.".

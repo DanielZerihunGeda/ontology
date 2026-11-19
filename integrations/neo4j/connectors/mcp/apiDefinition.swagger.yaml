@@ -1,0 +1,50 @@
+swagger: '2.0'
+info:
+  title: Graph Connector (MCP)
+  description: >-
+    Reference connector for graph operations. Tools: get-schema, read-cypher, write-cypher
+    (write-cypher is absent when the server runs with --read-only true).
+    Streamable HTTP transport for MCP clients.
+  version: 1.0.0
+# Replace with the public HTTPS host that fronts mcp-neo4j-http.sh (no scheme, no path).
+host: your-mcp-host.example.com
+basePath: /
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  # The database is selected by the path: /db/<database>/mcp. Plain /mcp returns 404.
+  /db/example-db/mcp:
+    post:
+      summary: Knowledge graph
+      description: >-
+        Query the knowledge graph: projects, organizations, letters, EOT claims,
+        agreements, proposals, drawings, BOQs, schedules, reports and financial records.
+        Call get-schema first, then read-cypher with parameters.
+      operationId: InvokeNeo4jMCP
+      x-ms-agentic-protocol: mcp-streamable-1.0
+      parameters:
+        # Required by the server on every request (400 without it). Also set by the
+        # setheader policy in apiProperties.json, which is the reliable path.
+        - name: X-Neo4j-MCP-URI
+          in: header
+          required: true
+          type: string
+          default: neo4j+s://graph.example.org
+          x-ms-visibility: internal
+          x-ms-summary: Neo4j connection URI
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Missing or wrong Neo4j credentials
+        '400':
+          description: Missing or disallowed X-Neo4j-MCP-URI header
+securityDefinitions:
+  basic_auth:
+    type: basic
+security:
+  - basic_auth: []

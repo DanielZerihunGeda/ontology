@@ -1,0 +1,4761 @@
+{
+  "version": "3.0.0",
+  "visualisation": {
+    "nodes": [
+      {
+        "id": "n:Project",
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "n:Organization",
+        "position": {
+          "x": 420,
+          "y": 0
+        }
+      },
+      {
+        "id": "n:Letter",
+        "position": {
+          "x": -60.0,
+          "y": 330.0
+        }
+      },
+      {
+        "id": "n:EOTClaim",
+        "position": {
+          "x": -272.1,
+          "y": 252.8
+        }
+      },
+      {
+        "id": "n:Agreement",
+        "position": {
+          "x": -385.0,
+          "y": 57.3
+        }
+      },
+      {
+        "id": "n:Proposal",
+        "position": {
+          "x": -345.8,
+          "y": -165.0
+        }
+      },
+      {
+        "id": "n:Drawing",
+        "position": {
+          "x": -172.9,
+          "y": -310.1
+        }
+      },
+      {
+        "id": "n:FinancialRecord",
+        "position": {
+          "x": 52.9,
+          "y": -310.1
+        }
+      },
+      {
+        "id": "n:BOQ",
+        "position": {
+          "x": 225.8,
+          "y": -165.0
+        }
+      },
+      {
+        "id": "n:Schedule",
+        "position": {
+          "x": 265.0,
+          "y": 57.3
+        }
+      },
+      {
+        "id": "n:Report",
+        "position": {
+          "x": 152.1,
+          "y": 252.8
+        }
+      }
+    ]
+  },
+  "dataModel": {
+    "version": "3.0.0",
+    "graphSchemaRepresentation": {
+      "version": "1.0.0",
+      "graphSchema": {
+        "nodeLabels": [
+          {
+            "$id": "nl:Project",
+            "token": "Project",
+            "properties": [
+              {
+                "$id": "p:Project:id",
+                "token": "id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:Project:name",
+                "token": "name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:Project:aliases",
+                "token": "aliases",
+                "type": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Project:summary",
+                "token": "summary",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Project:summaryEmbedding",
+                "token": "summaryEmbedding",
+                "type": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Project:status",
+                "token": "status",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Project:location",
+                "token": "location",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Project:startDate",
+                "token": "startDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Project:plannedCompletionDate",
+                "token": "plannedCompletionDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Project:actualCompletionDate",
+                "token": "actualCompletionDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Project:durationDays",
+                "token": "durationDays",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Project:areaSqm",
+                "token": "areaSqm",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:Organization",
+            "token": "Organization",
+            "properties": [
+              {
+                "$id": "p:Organization:id",
+                "token": "id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:Organization:name",
+                "token": "name",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:Organization:aliases",
+                "token": "aliases",
+                "type": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Organization:clientType",
+                "token": "clientType",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Organization:address",
+                "token": "address",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Organization:city",
+                "token": "city",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Organization:country",
+                "token": "country",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Organization:email",
+                "token": "email",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Organization:phoneNumber",
+                "token": "phoneNumber",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Organization:taxId",
+                "token": "taxId",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:Letter",
+            "token": "Letter",
+            "properties": [
+              {
+                "$id": "p:Letter:id",
+                "token": "id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:Letter:referenceNumber",
+                "token": "referenceNumber",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Letter:issueDate",
+                "token": "issueDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Letter:direction",
+                "token": "direction",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Letter:subject",
+                "token": "subject",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Letter:summary",
+                "token": "summary",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Letter:summaryEmbedding",
+                "token": "summaryEmbedding",
+                "type": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Letter:senderName",
+                "token": "senderName",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Letter:recipientNames",
+                "token": "recipientNames",
+                "type": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Letter:sourceUrl",
+                "token": "sourceUrl",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:EOTClaim",
+            "token": "EOTClaim",
+            "properties": [
+              {
+                "$id": "p:EOTClaim:id",
+                "token": "id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:EOTClaim:submittedDate",
+                "token": "submittedDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:status",
+                "token": "status",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:summary",
+                "token": "summary",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:summaryEmbedding",
+                "token": "summaryEmbedding",
+                "type": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:contractSigningDate",
+                "token": "contractSigningDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:siteHandoverDate",
+                "token": "siteHandoverDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:commencementDate",
+                "token": "commencementDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:originalContractPrice",
+                "token": "originalContractPrice",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:currency",
+                "token": "currency",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:includesVAT",
+                "token": "includesVAT",
+                "type": {
+                  "type": "boolean"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:originalDurationDays",
+                "token": "originalDurationDays",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:originalCompletionDate",
+                "token": "originalCompletionDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:previouslyApprovedExtensionDays",
+                "token": "previouslyApprovedExtensionDays",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:requestedExtensionDays",
+                "token": "requestedExtensionDays",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:requestedCompletionDate",
+                "token": "requestedCompletionDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:approvedExtensionDays",
+                "token": "approvedExtensionDays",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:EOTClaim:sourceUrl",
+                "token": "sourceUrl",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:Agreement",
+            "token": "Agreement",
+            "properties": [
+              {
+                "$id": "p:Agreement:id",
+                "token": "id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:Agreement:clauseNumber",
+                "token": "clauseNumber",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Agreement:signedDate",
+                "token": "signedDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Agreement:clauseDate",
+                "token": "clauseDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Agreement:witnessNames",
+                "token": "witnessNames",
+                "type": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Agreement:summary",
+                "token": "summary",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Agreement:summaryEmbedding",
+                "token": "summaryEmbedding",
+                "type": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Agreement:sourceUrl",
+                "token": "sourceUrl",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:Proposal",
+            "token": "Proposal",
+            "properties": [
+              {
+                "$id": "p:Proposal:id",
+                "token": "id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:Proposal:referenceNumber",
+                "token": "referenceNumber",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Proposal:title",
+                "token": "title",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Proposal:status",
+                "token": "status",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Proposal:submittedDate",
+                "token": "submittedDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Proposal:validUntil",
+                "token": "validUntil",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Proposal:proposedAmount",
+                "token": "proposedAmount",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Proposal:currency",
+                "token": "currency",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Proposal:includesVAT",
+                "token": "includesVAT",
+                "type": {
+                  "type": "boolean"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Proposal:summary",
+                "token": "summary",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Proposal:summaryEmbedding",
+                "token": "summaryEmbedding",
+                "type": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Proposal:sourceUrl",
+                "token": "sourceUrl",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:Drawing",
+            "token": "Drawing",
+            "properties": [
+              {
+                "$id": "p:Drawing:id",
+                "token": "id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:Drawing:referenceNumber",
+                "token": "referenceNumber",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Drawing:title",
+                "token": "title",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Drawing:discipline",
+                "token": "discipline",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Drawing:revision",
+                "token": "revision",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Drawing:issueDate",
+                "token": "issueDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Drawing:designerName",
+                "token": "designerName",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Drawing:sourceUrl",
+                "token": "sourceUrl",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:FinancialRecord",
+            "token": "FinancialRecord",
+            "properties": [
+              {
+                "$id": "p:FinancialRecord:id",
+                "token": "id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:FinancialRecord:recordType",
+                "token": "recordType",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:FinancialRecord:referenceNumber",
+                "token": "referenceNumber",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:description",
+                "token": "description",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:category",
+                "token": "category",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:amount",
+                "token": "amount",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:currency",
+                "token": "currency",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:taxAmount",
+                "token": "taxAmount",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:includesVAT",
+                "token": "includesVAT",
+                "type": {
+                  "type": "boolean"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:status",
+                "token": "status",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:effectiveDate",
+                "token": "effectiveDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:dueDate",
+                "token": "dueDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:periodStart",
+                "token": "periodStart",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:periodEnd",
+                "token": "periodEnd",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:paymentMethod",
+                "token": "paymentMethod",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:transactionReference",
+                "token": "transactionReference",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:interimNumber",
+                "token": "interimNumber",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:paymentTerms",
+                "token": "paymentTerms",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:grossAmount",
+                "token": "grossAmount",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:netAmount",
+                "token": "netAmount",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:deductions",
+                "token": "deductions",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:costType",
+                "token": "costType",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:costCenter",
+                "token": "costCenter",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:fiscalYear",
+                "token": "fiscalYear",
+                "type": {
+                  "type": "integer"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:revisedAmount",
+                "token": "revisedAmount",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:adjustmentReason",
+                "token": "adjustmentReason",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:statementType",
+                "token": "statementType",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:summary",
+                "token": "summary",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:summaryEmbedding",
+                "token": "summaryEmbedding",
+                "type": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:FinancialRecord:sourceUrl",
+                "token": "sourceUrl",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:BOQ",
+            "token": "BOQ",
+            "properties": [
+              {
+                "$id": "p:BOQ:id",
+                "token": "id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:BOQ:totalAmount",
+                "token": "totalAmount",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:BOQ:currency",
+                "token": "currency",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:BOQ:includesVAT",
+                "token": "includesVAT",
+                "type": {
+                  "type": "boolean"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:BOQ:preparedDate",
+                "token": "preparedDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:BOQ:sourceUrl",
+                "token": "sourceUrl",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:Schedule",
+            "token": "Schedule",
+            "properties": [
+              {
+                "$id": "p:Schedule:id",
+                "token": "id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:Schedule:dataDate",
+                "token": "dataDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Schedule:plannedStartDate",
+                "token": "plannedStartDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Schedule:plannedFinishDate",
+                "token": "plannedFinishDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Schedule:revision",
+                "token": "revision",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Schedule:sourceUrl",
+                "token": "sourceUrl",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:Report",
+            "token": "Report",
+            "properties": [
+              {
+                "$id": "p:Report:id",
+                "token": "id",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:Report:reportType",
+                "token": "reportType",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": false
+              },
+              {
+                "$id": "p:Report:referenceNumber",
+                "token": "referenceNumber",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Report:title",
+                "token": "title",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Report:reportDate",
+                "token": "reportDate",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Report:periodStart",
+                "token": "periodStart",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Report:periodEnd",
+                "token": "periodEnd",
+                "type": {
+                  "type": "datetime"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Report:revision",
+                "token": "revision",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Report:status",
+                "token": "status",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Report:plannedTotal",
+                "token": "plannedTotal",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Report:executedTotal",
+                "token": "executedTotal",
+                "type": {
+                  "type": "float"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Report:unit",
+                "token": "unit",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Report:summary",
+                "token": "summary",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Report:summaryEmbedding",
+                "token": "summaryEmbedding",
+                "type": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                },
+                "nullable": true
+              },
+              {
+                "$id": "p:Report:sourceUrl",
+                "token": "sourceUrl",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          }
+        ],
+        "relationshipTypes": [
+          {
+            "$id": "rt:FOR_PROJECT",
+            "token": "FOR_PROJECT",
+            "properties": []
+          },
+          {
+            "$id": "rt:CLIENT_OF",
+            "token": "CLIENT_OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:CONTRACTOR_OF",
+            "token": "CONTRACTOR_OF",
+            "properties": []
+          },
+          {
+            "$id": "rt:CONSULTANT_OF",
+            "token": "CONSULTANT_OF",
+            "properties": [
+              {
+                "$id": "p:CONSULTANT_OF:role",
+                "token": "role",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "rt:SENT_BY",
+            "token": "SENT_BY",
+            "properties": []
+          },
+          {
+            "$id": "rt:ADDRESSED_TO",
+            "token": "ADDRESSED_TO",
+            "properties": []
+          },
+          {
+            "$id": "rt:SUBMITTED_BY",
+            "token": "SUBMITTED_BY",
+            "properties": []
+          },
+          {
+            "$id": "rt:DESIGNED_BY",
+            "token": "DESIGNED_BY",
+            "properties": []
+          },
+          {
+            "$id": "rt:SIGNED_BY",
+            "token": "SIGNED_BY",
+            "properties": []
+          },
+          {
+            "$id": "rt:CITES",
+            "token": "CITES",
+            "properties": []
+          },
+          {
+            "$id": "rt:PREPARED_BY",
+            "token": "PREPARED_BY",
+            "properties": []
+          },
+          {
+            "$id": "rt:INVOLVES",
+            "token": "INVOLVES",
+            "properties": [
+              {
+                "$id": "p:INVOLVES:role",
+                "token": "role",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "rt:REFERENCED_IN",
+            "token": "REFERENCED_IN",
+            "properties": []
+          },
+          {
+            "$id": "rt:GOVERNED_BY",
+            "token": "GOVERNED_BY",
+            "properties": []
+          }
+        ],
+        "nodeObjectTypes": [
+          {
+            "$id": "n:Project",
+            "labels": [
+              {
+                "$ref": "#nl:Project"
+              }
+            ]
+          },
+          {
+            "$id": "n:Organization",
+            "labels": [
+              {
+                "$ref": "#nl:Organization"
+              }
+            ]
+          },
+          {
+            "$id": "n:Letter",
+            "labels": [
+              {
+                "$ref": "#nl:Letter"
+              }
+            ]
+          },
+          {
+            "$id": "n:EOTClaim",
+            "labels": [
+              {
+                "$ref": "#nl:EOTClaim"
+              }
+            ]
+          },
+          {
+            "$id": "n:Agreement",
+            "labels": [
+              {
+                "$ref": "#nl:Agreement"
+              }
+            ]
+          },
+          {
+            "$id": "n:Proposal",
+            "labels": [
+              {
+                "$ref": "#nl:Proposal"
+              }
+            ]
+          },
+          {
+            "$id": "n:Drawing",
+            "labels": [
+              {
+                "$ref": "#nl:Drawing"
+              }
+            ]
+          },
+          {
+            "$id": "n:FinancialRecord",
+            "labels": [
+              {
+                "$ref": "#nl:FinancialRecord"
+              }
+            ]
+          },
+          {
+            "$id": "n:BOQ",
+            "labels": [
+              {
+                "$ref": "#nl:BOQ"
+              }
+            ]
+          },
+          {
+            "$id": "n:Schedule",
+            "labels": [
+              {
+                "$ref": "#nl:Schedule"
+              }
+            ]
+          },
+          {
+            "$id": "n:Report",
+            "labels": [
+              {
+                "$ref": "#nl:Report"
+              }
+            ]
+          }
+        ],
+        "relationshipObjectTypes": [
+          {
+            "$id": "r:FOR_PROJECT:BOQ",
+            "type": {
+              "$ref": "#rt:FOR_PROJECT"
+            },
+            "from": {
+              "$ref": "#n:BOQ"
+            },
+            "to": {
+              "$ref": "#n:Project"
+            }
+          },
+          {
+            "$id": "r:FOR_PROJECT:Letter",
+            "type": {
+              "$ref": "#rt:FOR_PROJECT"
+            },
+            "from": {
+              "$ref": "#n:Letter"
+            },
+            "to": {
+              "$ref": "#n:Project"
+            }
+          },
+          {
+            "$id": "r:FOR_PROJECT:Drawing",
+            "type": {
+              "$ref": "#rt:FOR_PROJECT"
+            },
+            "from": {
+              "$ref": "#n:Drawing"
+            },
+            "to": {
+              "$ref": "#n:Project"
+            }
+          },
+          {
+            "$id": "r:FOR_PROJECT:Agreement",
+            "type": {
+              "$ref": "#rt:FOR_PROJECT"
+            },
+            "from": {
+              "$ref": "#n:Agreement"
+            },
+            "to": {
+              "$ref": "#n:Project"
+            }
+          },
+          {
+            "$id": "r:FOR_PROJECT:Schedule",
+            "type": {
+              "$ref": "#rt:FOR_PROJECT"
+            },
+            "from": {
+              "$ref": "#n:Schedule"
+            },
+            "to": {
+              "$ref": "#n:Project"
+            }
+          },
+          {
+            "$id": "r:FOR_PROJECT:Report",
+            "type": {
+              "$ref": "#rt:FOR_PROJECT"
+            },
+            "from": {
+              "$ref": "#n:Report"
+            },
+            "to": {
+              "$ref": "#n:Project"
+            }
+          },
+          {
+            "$id": "r:FOR_PROJECT:EOTClaim",
+            "type": {
+              "$ref": "#rt:FOR_PROJECT"
+            },
+            "from": {
+              "$ref": "#n:EOTClaim"
+            },
+            "to": {
+              "$ref": "#n:Project"
+            }
+          },
+          {
+            "$id": "r:FOR_PROJECT:Proposal",
+            "type": {
+              "$ref": "#rt:FOR_PROJECT"
+            },
+            "from": {
+              "$ref": "#n:Proposal"
+            },
+            "to": {
+              "$ref": "#n:Project"
+            }
+          },
+          {
+            "$id": "r:FOR_PROJECT:FinancialRecord",
+            "type": {
+              "$ref": "#rt:FOR_PROJECT"
+            },
+            "from": {
+              "$ref": "#n:FinancialRecord"
+            },
+            "to": {
+              "$ref": "#n:Project"
+            }
+          },
+          {
+            "$id": "r:CLIENT_OF:Organization",
+            "type": {
+              "$ref": "#rt:CLIENT_OF"
+            },
+            "from": {
+              "$ref": "#n:Organization"
+            },
+            "to": {
+              "$ref": "#n:Project"
+            }
+          },
+          {
+            "$id": "r:CONTRACTOR_OF:Organization",
+            "type": {
+              "$ref": "#rt:CONTRACTOR_OF"
+            },
+            "from": {
+              "$ref": "#n:Organization"
+            },
+            "to": {
+              "$ref": "#n:Project"
+            }
+          },
+          {
+            "$id": "r:CONSULTANT_OF:Organization",
+            "type": {
+              "$ref": "#rt:CONSULTANT_OF"
+            },
+            "from": {
+              "$ref": "#n:Organization"
+            },
+            "to": {
+              "$ref": "#n:Project"
+            }
+          },
+          {
+            "$id": "r:SENT_BY:Letter",
+            "type": {
+              "$ref": "#rt:SENT_BY"
+            },
+            "from": {
+              "$ref": "#n:Letter"
+            },
+            "to": {
+              "$ref": "#n:Organization"
+            }
+          },
+          {
+            "$id": "r:ADDRESSED_TO:Letter",
+            "type": {
+              "$ref": "#rt:ADDRESSED_TO"
+            },
+            "from": {
+              "$ref": "#n:Letter"
+            },
+            "to": {
+              "$ref": "#n:Organization"
+            }
+          },
+          {
+            "$id": "r:SUBMITTED_BY:EOTClaim",
+            "type": {
+              "$ref": "#rt:SUBMITTED_BY"
+            },
+            "from": {
+              "$ref": "#n:EOTClaim"
+            },
+            "to": {
+              "$ref": "#n:Organization"
+            }
+          },
+          {
+            "$id": "r:SUBMITTED_BY:Proposal",
+            "type": {
+              "$ref": "#rt:SUBMITTED_BY"
+            },
+            "from": {
+              "$ref": "#n:Proposal"
+            },
+            "to": {
+              "$ref": "#n:Organization"
+            }
+          },
+          {
+            "$id": "r:DESIGNED_BY:Drawing",
+            "type": {
+              "$ref": "#rt:DESIGNED_BY"
+            },
+            "from": {
+              "$ref": "#n:Drawing"
+            },
+            "to": {
+              "$ref": "#n:Organization"
+            }
+          },
+          {
+            "$id": "r:SIGNED_BY:Agreement",
+            "type": {
+              "$ref": "#rt:SIGNED_BY"
+            },
+            "from": {
+              "$ref": "#n:Agreement"
+            },
+            "to": {
+              "$ref": "#n:Organization"
+            }
+          },
+          {
+            "$id": "r:CITES:EOTClaim",
+            "type": {
+              "$ref": "#rt:CITES"
+            },
+            "from": {
+              "$ref": "#n:EOTClaim"
+            },
+            "to": {
+              "$ref": "#n:Agreement"
+            }
+          },
+          {
+            "$id": "r:PREPARED_BY:Report",
+            "type": {
+              "$ref": "#rt:PREPARED_BY"
+            },
+            "from": {
+              "$ref": "#n:Report"
+            },
+            "to": {
+              "$ref": "#n:Organization"
+            }
+          },
+          {
+            "$id": "r:INVOLVES:FinancialRecord",
+            "type": {
+              "$ref": "#rt:INVOLVES"
+            },
+            "from": {
+              "$ref": "#n:FinancialRecord"
+            },
+            "to": {
+              "$ref": "#n:Organization"
+            }
+          },
+          {
+            "$id": "r:REFERENCED_IN:FinancialRecord",
+            "type": {
+              "$ref": "#rt:REFERENCED_IN"
+            },
+            "from": {
+              "$ref": "#n:FinancialRecord"
+            },
+            "to": {
+              "$ref": "#n:Letter"
+            }
+          },
+          {
+            "$id": "r:GOVERNED_BY:FinancialRecord",
+            "type": {
+              "$ref": "#rt:GOVERNED_BY"
+            },
+            "from": {
+              "$ref": "#n:FinancialRecord"
+            },
+            "to": {
+              "$ref": "#n:Agreement"
+            }
+          }
+        ],
+        "constraints": [
+          {
+            "$id": "c:Project",
+            "name": "project_id",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:Project"
+            },
+            "properties": [
+              {
+                "$ref": "#p:Project:id"
+              }
+            ]
+          },
+          {
+            "$id": "c:Organization",
+            "name": "organization_id",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:Organization"
+            },
+            "properties": [
+              {
+                "$ref": "#p:Organization:id"
+              }
+            ]
+          },
+          {
+            "$id": "c:Letter",
+            "name": "letter_id",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:Letter"
+            },
+            "properties": [
+              {
+                "$ref": "#p:Letter:id"
+              }
+            ]
+          },
+          {
+            "$id": "c:EOTClaim",
+            "name": "eot_claim_id",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:EOTClaim"
+            },
+            "properties": [
+              {
+                "$ref": "#p:EOTClaim:id"
+              }
+            ]
+          },
+          {
+            "$id": "c:Agreement",
+            "name": "agreement_id",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:Agreement"
+            },
+            "properties": [
+              {
+                "$ref": "#p:Agreement:id"
+              }
+            ]
+          },
+          {
+            "$id": "c:Proposal",
+            "name": "proposal_id",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:Proposal"
+            },
+            "properties": [
+              {
+                "$ref": "#p:Proposal:id"
+              }
+            ]
+          },
+          {
+            "$id": "c:Drawing",
+            "name": "drawing_id",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:Drawing"
+            },
+            "properties": [
+              {
+                "$ref": "#p:Drawing:id"
+              }
+            ]
+          },
+          {
+            "$id": "c:FinancialRecord",
+            "name": "financial_record_id",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:FinancialRecord"
+            },
+            "properties": [
+              {
+                "$ref": "#p:FinancialRecord:id"
+              }
+            ]
+          },
+          {
+            "$id": "c:BOQ",
+            "name": "boq_id",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:BOQ"
+            },
+            "properties": [
+              {
+                "$ref": "#p:BOQ:id"
+              }
+            ]
+          },
+          {
+            "$id": "c:Schedule",
+            "name": "schedule_id",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:Schedule"
+            },
+            "properties": [
+              {
+                "$ref": "#p:Schedule:id"
+              }
+            ]
+          },
+          {
+            "$id": "c:Report",
+            "name": "report_id",
+            "constraintType": "key",
+            "entityType": "node",
+            "nodeLabel": {
+              "$ref": "#nl:Report"
+            },
+            "properties": [
+              {
+                "$ref": "#p:Report:id"
+              }
+            ]
+          }
+        ],
+        "indexes": []
+      }
+    },
+    "graphSchemaExtensionsRepresentation": {
+      "nodeKeyProperties": [
+        {
+          "node": {
+            "$ref": "#n:Project"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:Project:id"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Organization"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:Organization:id"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Letter"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:Letter:id"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:EOTClaim"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:EOTClaim:id"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Agreement"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:Agreement:id"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Proposal"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:Proposal:id"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Drawing"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:Drawing:id"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:FinancialRecord"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:FinancialRecord:id"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:BOQ"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:BOQ:id"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Schedule"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:Schedule:id"
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Report"
+          },
+          "keyProperties": [
+            {
+              "$ref": "#p:Report:id"
+            }
+          ]
+        }
+      ]
+    },
+    "graphMappingRepresentation": {
+      "dataSourceSchema": {
+        "type": "local",
+        "tableSchemas": [
+          {
+            "name": "Project.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "name",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "aliases",
+                "sample": "",
+                "recommendedType": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "name": "summary",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "summaryEmbedding",
+                "sample": "",
+                "recommendedType": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                }
+              },
+              {
+                "name": "status",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "location",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "startDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "plannedCompletionDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "actualCompletionDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "durationDays",
+                "sample": "",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "areaSqm",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Organization.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "name",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "aliases",
+                "sample": "",
+                "recommendedType": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "name": "clientType",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "address",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "city",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "country",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "email",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "phoneNumber",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "taxId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Letter.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "referenceNumber",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "issueDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "direction",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "subject",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "summary",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "summaryEmbedding",
+                "sample": "",
+                "recommendedType": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                }
+              },
+              {
+                "name": "senderName",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "recipientNames",
+                "sample": "",
+                "recommendedType": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "name": "sourceUrl",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "EOTClaim.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "submittedDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "summary",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "summaryEmbedding",
+                "sample": "",
+                "recommendedType": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                }
+              },
+              {
+                "name": "contractSigningDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "siteHandoverDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "commencementDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "originalContractPrice",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "currency",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "includesVAT",
+                "sample": "",
+                "recommendedType": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "originalDurationDays",
+                "sample": "",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "originalCompletionDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "previouslyApprovedExtensionDays",
+                "sample": "",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "requestedExtensionDays",
+                "sample": "",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "requestedCompletionDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "approvedExtensionDays",
+                "sample": "",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "sourceUrl",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Agreement.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "clauseNumber",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "signedDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "clauseDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "witnessNames",
+                "sample": "",
+                "recommendedType": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "name": "summary",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "summaryEmbedding",
+                "sample": "",
+                "recommendedType": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                }
+              },
+              {
+                "name": "sourceUrl",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Proposal.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "referenceNumber",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "title",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "submittedDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "validUntil",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "proposedAmount",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "currency",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "includesVAT",
+                "sample": "",
+                "recommendedType": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "summary",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "summaryEmbedding",
+                "sample": "",
+                "recommendedType": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                }
+              },
+              {
+                "name": "sourceUrl",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Drawing.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "referenceNumber",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "title",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "discipline",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "revision",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "issueDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "designerName",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "sourceUrl",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "FinancialRecord.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "recordType",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "referenceNumber",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "description",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "category",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "amount",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "currency",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "taxAmount",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "includesVAT",
+                "sample": "",
+                "recommendedType": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "effectiveDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "dueDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "periodStart",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "periodEnd",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "paymentMethod",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "transactionReference",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "interimNumber",
+                "sample": "",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "paymentTerms",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "grossAmount",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "netAmount",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "deductions",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "costType",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "costCenter",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "fiscalYear",
+                "sample": "",
+                "recommendedType": {
+                  "type": "integer"
+                }
+              },
+              {
+                "name": "revisedAmount",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "adjustmentReason",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "statementType",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "summary",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "summaryEmbedding",
+                "sample": "",
+                "recommendedType": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                }
+              },
+              {
+                "name": "sourceUrl",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "BOQ.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "totalAmount",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "currency",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "includesVAT",
+                "sample": "",
+                "recommendedType": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "preparedDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "sourceUrl",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Schedule.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "dataDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "plannedStartDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "plannedFinishDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "revision",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "sourceUrl",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Report.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "id",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "reportType",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "referenceNumber",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "title",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "reportDate",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "periodStart",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "periodEnd",
+                "sample": "",
+                "recommendedType": {
+                  "type": "datetime"
+                }
+              },
+              {
+                "name": "revision",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "status",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "plannedTotal",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "executedTotal",
+                "sample": "",
+                "recommendedType": {
+                  "type": "float"
+                }
+              },
+              {
+                "name": "unit",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "summary",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "summaryEmbedding",
+                "sample": "",
+                "recommendedType": {
+                  "type": "vector",
+                  "items": {
+                    "type": "float"
+                  },
+                  "dimension": 1536
+                }
+              },
+              {
+                "name": "sourceUrl",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "FOR_PROJECT__BOQ.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "FOR_PROJECT__Letter.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "FOR_PROJECT__Drawing.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "FOR_PROJECT__Agreement.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "FOR_PROJECT__Schedule.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "FOR_PROJECT__Report.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "FOR_PROJECT__EOTClaim.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "FOR_PROJECT__Proposal.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "FOR_PROJECT__FinancialRecord.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "CLIENT_OF.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "CONTRACTOR_OF.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "CONSULTANT_OF.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "role",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "SENT_BY.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "ADDRESSED_TO.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "SUBMITTED_BY__EOTClaim.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "SUBMITTED_BY__Proposal.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "DESIGNED_BY.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "SIGNED_BY.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "CITES.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "PREPARED_BY.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "INVOLVES.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "role",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "REFERENCED_IN.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          {
+            "name": "GOVERNED_BY.csv",
+            "expanded": true,
+            "fields": [
+              {
+                "name": "startId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endId",
+                "sample": "",
+                "recommendedType": {
+                  "type": "string"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "nodeMappings": [
+        {
+          "node": {
+            "$ref": "#n:Project"
+          },
+          "tableName": "Project.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "id",
+              "property": {
+                "$ref": "#p:Project:id"
+              }
+            },
+            {
+              "fieldName": "name",
+              "property": {
+                "$ref": "#p:Project:name"
+              }
+            },
+            {
+              "fieldName": "aliases",
+              "property": {
+                "$ref": "#p:Project:aliases"
+              }
+            },
+            {
+              "fieldName": "summary",
+              "property": {
+                "$ref": "#p:Project:summary"
+              }
+            },
+            {
+              "fieldName": "summaryEmbedding",
+              "property": {
+                "$ref": "#p:Project:summaryEmbedding"
+              }
+            },
+            {
+              "fieldName": "status",
+              "property": {
+                "$ref": "#p:Project:status"
+              }
+            },
+            {
+              "fieldName": "location",
+              "property": {
+                "$ref": "#p:Project:location"
+              }
+            },
+            {
+              "fieldName": "startDate",
+              "property": {
+                "$ref": "#p:Project:startDate"
+              }
+            },
+            {
+              "fieldName": "plannedCompletionDate",
+              "property": {
+                "$ref": "#p:Project:plannedCompletionDate"
+              }
+            },
+            {
+              "fieldName": "actualCompletionDate",
+              "property": {
+                "$ref": "#p:Project:actualCompletionDate"
+              }
+            },
+            {
+              "fieldName": "durationDays",
+              "property": {
+                "$ref": "#p:Project:durationDays"
+              }
+            },
+            {
+              "fieldName": "areaSqm",
+              "property": {
+                "$ref": "#p:Project:areaSqm"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Organization"
+          },
+          "tableName": "Organization.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "id",
+              "property": {
+                "$ref": "#p:Organization:id"
+              }
+            },
+            {
+              "fieldName": "name",
+              "property": {
+                "$ref": "#p:Organization:name"
+              }
+            },
+            {
+              "fieldName": "aliases",
+              "property": {
+                "$ref": "#p:Organization:aliases"
+              }
+            },
+            {
+              "fieldName": "clientType",
+              "property": {
+                "$ref": "#p:Organization:clientType"
+              }
+            },
+            {
+              "fieldName": "address",
+              "property": {
+                "$ref": "#p:Organization:address"
+              }
+            },
+            {
+              "fieldName": "city",
+              "property": {
+                "$ref": "#p:Organization:city"
+              }
+            },
+            {
+              "fieldName": "country",
+              "property": {
+                "$ref": "#p:Organization:country"
+              }
+            },
+            {
+              "fieldName": "email",
+              "property": {
+                "$ref": "#p:Organization:email"
+              }
+            },
+            {
+              "fieldName": "phoneNumber",
+              "property": {
+                "$ref": "#p:Organization:phoneNumber"
+              }
+            },
+            {
+              "fieldName": "taxId",
+              "property": {
+                "$ref": "#p:Organization:taxId"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Letter"
+          },
+          "tableName": "Letter.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "id",
+              "property": {
+                "$ref": "#p:Letter:id"
+              }
+            },
+            {
+              "fieldName": "referenceNumber",
+              "property": {
+                "$ref": "#p:Letter:referenceNumber"
+              }
+            },
+            {
+              "fieldName": "issueDate",
+              "property": {
+                "$ref": "#p:Letter:issueDate"
+              }
+            },
+            {
+              "fieldName": "direction",
+              "property": {
+                "$ref": "#p:Letter:direction"
+              }
+            },
+            {
+              "fieldName": "subject",
+              "property": {
+                "$ref": "#p:Letter:subject"
+              }
+            },
+            {
+              "fieldName": "summary",
+              "property": {
+                "$ref": "#p:Letter:summary"
+              }
+            },
+            {
+              "fieldName": "summaryEmbedding",
+              "property": {
+                "$ref": "#p:Letter:summaryEmbedding"
+              }
+            },
+            {
+              "fieldName": "senderName",
+              "property": {
+                "$ref": "#p:Letter:senderName"
+              }
+            },
+            {
+              "fieldName": "recipientNames",
+              "property": {
+                "$ref": "#p:Letter:recipientNames"
+              }
+            },
+            {
+              "fieldName": "sourceUrl",
+              "property": {
+                "$ref": "#p:Letter:sourceUrl"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:EOTClaim"
+          },
+          "tableName": "EOTClaim.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "id",
+              "property": {
+                "$ref": "#p:EOTClaim:id"
+              }
+            },
+            {
+              "fieldName": "submittedDate",
+              "property": {
+                "$ref": "#p:EOTClaim:submittedDate"
+              }
+            },
+            {
+              "fieldName": "status",
+              "property": {
+                "$ref": "#p:EOTClaim:status"
+              }
+            },
+            {
+              "fieldName": "summary",
+              "property": {
+                "$ref": "#p:EOTClaim:summary"
+              }
+            },
+            {
+              "fieldName": "summaryEmbedding",
+              "property": {
+                "$ref": "#p:EOTClaim:summaryEmbedding"
+              }
+            },
+            {
+              "fieldName": "contractSigningDate",
+              "property": {
+                "$ref": "#p:EOTClaim:contractSigningDate"
+              }
+            },
+            {
+              "fieldName": "siteHandoverDate",
+              "property": {
+                "$ref": "#p:EOTClaim:siteHandoverDate"
+              }
+            },
+            {
+              "fieldName": "commencementDate",
+              "property": {
+                "$ref": "#p:EOTClaim:commencementDate"
+              }
+            },
+            {
+              "fieldName": "originalContractPrice",
+              "property": {
+                "$ref": "#p:EOTClaim:originalContractPrice"
+              }
+            },
+            {
+              "fieldName": "currency",
+              "property": {
+                "$ref": "#p:EOTClaim:currency"
+              }
+            },
+            {
+              "fieldName": "includesVAT",
+              "property": {
+                "$ref": "#p:EOTClaim:includesVAT"
+              }
+            },
+            {
+              "fieldName": "originalDurationDays",
+              "property": {
+                "$ref": "#p:EOTClaim:originalDurationDays"
+              }
+            },
+            {
+              "fieldName": "originalCompletionDate",
+              "property": {
+                "$ref": "#p:EOTClaim:originalCompletionDate"
+              }
+            },
+            {
+              "fieldName": "previouslyApprovedExtensionDays",
+              "property": {
+                "$ref": "#p:EOTClaim:previouslyApprovedExtensionDays"
+              }
+            },
+            {
+              "fieldName": "requestedExtensionDays",
+              "property": {
+                "$ref": "#p:EOTClaim:requestedExtensionDays"
+              }
+            },
+            {
+              "fieldName": "requestedCompletionDate",
+              "property": {
+                "$ref": "#p:EOTClaim:requestedCompletionDate"
+              }
+            },
+            {
+              "fieldName": "approvedExtensionDays",
+              "property": {
+                "$ref": "#p:EOTClaim:approvedExtensionDays"
+              }
+            },
+            {
+              "fieldName": "sourceUrl",
+              "property": {
+                "$ref": "#p:EOTClaim:sourceUrl"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Agreement"
+          },
+          "tableName": "Agreement.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "id",
+              "property": {
+                "$ref": "#p:Agreement:id"
+              }
+            },
+            {
+              "fieldName": "clauseNumber",
+              "property": {
+                "$ref": "#p:Agreement:clauseNumber"
+              }
+            },
+            {
+              "fieldName": "signedDate",
+              "property": {
+                "$ref": "#p:Agreement:signedDate"
+              }
+            },
+            {
+              "fieldName": "clauseDate",
+              "property": {
+                "$ref": "#p:Agreement:clauseDate"
+              }
+            },
+            {
+              "fieldName": "witnessNames",
+              "property": {
+                "$ref": "#p:Agreement:witnessNames"
+              }
+            },
+            {
+              "fieldName": "summary",
+              "property": {
+                "$ref": "#p:Agreement:summary"
+              }
+            },
+            {
+              "fieldName": "summaryEmbedding",
+              "property": {
+                "$ref": "#p:Agreement:summaryEmbedding"
+              }
+            },
+            {
+              "fieldName": "sourceUrl",
+              "property": {
+                "$ref": "#p:Agreement:sourceUrl"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Proposal"
+          },
+          "tableName": "Proposal.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "id",
+              "property": {
+                "$ref": "#p:Proposal:id"
+              }
+            },
+            {
+              "fieldName": "referenceNumber",
+              "property": {
+                "$ref": "#p:Proposal:referenceNumber"
+              }
+            },
+            {
+              "fieldName": "title",
+              "property": {
+                "$ref": "#p:Proposal:title"
+              }
+            },
+            {
+              "fieldName": "status",
+              "property": {
+                "$ref": "#p:Proposal:status"
+              }
+            },
+            {
+              "fieldName": "submittedDate",
+              "property": {
+                "$ref": "#p:Proposal:submittedDate"
+              }
+            },
+            {
+              "fieldName": "validUntil",
+              "property": {
+                "$ref": "#p:Proposal:validUntil"
+              }
+            },
+            {
+              "fieldName": "proposedAmount",
+              "property": {
+                "$ref": "#p:Proposal:proposedAmount"
+              }
+            },
+            {
+              "fieldName": "currency",
+              "property": {
+                "$ref": "#p:Proposal:currency"
+              }
+            },
+            {
+              "fieldName": "includesVAT",
+              "property": {
+                "$ref": "#p:Proposal:includesVAT"
+              }
+            },
+            {
+              "fieldName": "summary",
+              "property": {
+                "$ref": "#p:Proposal:summary"
+              }
+            },
+            {
+              "fieldName": "summaryEmbedding",
+              "property": {
+                "$ref": "#p:Proposal:summaryEmbedding"
+              }
+            },
+            {
+              "fieldName": "sourceUrl",
+              "property": {
+                "$ref": "#p:Proposal:sourceUrl"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Drawing"
+          },
+          "tableName": "Drawing.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "id",
+              "property": {
+                "$ref": "#p:Drawing:id"
+              }
+            },
+            {
+              "fieldName": "referenceNumber",
+              "property": {
+                "$ref": "#p:Drawing:referenceNumber"
+              }
+            },
+            {
+              "fieldName": "title",
+              "property": {
+                "$ref": "#p:Drawing:title"
+              }
+            },
+            {
+              "fieldName": "discipline",
+              "property": {
+                "$ref": "#p:Drawing:discipline"
+              }
+            },
+            {
+              "fieldName": "revision",
+              "property": {
+                "$ref": "#p:Drawing:revision"
+              }
+            },
+            {
+              "fieldName": "issueDate",
+              "property": {
+                "$ref": "#p:Drawing:issueDate"
+              }
+            },
+            {
+              "fieldName": "designerName",
+              "property": {
+                "$ref": "#p:Drawing:designerName"
+              }
+            },
+            {
+              "fieldName": "sourceUrl",
+              "property": {
+                "$ref": "#p:Drawing:sourceUrl"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:FinancialRecord"
+          },
+          "tableName": "FinancialRecord.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "id",
+              "property": {
+                "$ref": "#p:FinancialRecord:id"
+              }
+            },
+            {
+              "fieldName": "recordType",
+              "property": {
+                "$ref": "#p:FinancialRecord:recordType"
+              }
+            },
+            {
+              "fieldName": "referenceNumber",
+              "property": {
+                "$ref": "#p:FinancialRecord:referenceNumber"
+              }
+            },
+            {
+              "fieldName": "description",
+              "property": {
+                "$ref": "#p:FinancialRecord:description"
+              }
+            },
+            {
+              "fieldName": "category",
+              "property": {
+                "$ref": "#p:FinancialRecord:category"
+              }
+            },
+            {
+              "fieldName": "amount",
+              "property": {
+                "$ref": "#p:FinancialRecord:amount"
+              }
+            },
+            {
+              "fieldName": "currency",
+              "property": {
+                "$ref": "#p:FinancialRecord:currency"
+              }
+            },
+            {
+              "fieldName": "taxAmount",
+              "property": {
+                "$ref": "#p:FinancialRecord:taxAmount"
+              }
+            },
+            {
+              "fieldName": "includesVAT",
+              "property": {
+                "$ref": "#p:FinancialRecord:includesVAT"
+              }
+            },
+            {
+              "fieldName": "status",
+              "property": {
+                "$ref": "#p:FinancialRecord:status"
+              }
+            },
+            {
+              "fieldName": "effectiveDate",
+              "property": {
+                "$ref": "#p:FinancialRecord:effectiveDate"
+              }
+            },
+            {
+              "fieldName": "dueDate",
+              "property": {
+                "$ref": "#p:FinancialRecord:dueDate"
+              }
+            },
+            {
+              "fieldName": "periodStart",
+              "property": {
+                "$ref": "#p:FinancialRecord:periodStart"
+              }
+            },
+            {
+              "fieldName": "periodEnd",
+              "property": {
+                "$ref": "#p:FinancialRecord:periodEnd"
+              }
+            },
+            {
+              "fieldName": "paymentMethod",
+              "property": {
+                "$ref": "#p:FinancialRecord:paymentMethod"
+              }
+            },
+            {
+              "fieldName": "transactionReference",
+              "property": {
+                "$ref": "#p:FinancialRecord:transactionReference"
+              }
+            },
+            {
+              "fieldName": "interimNumber",
+              "property": {
+                "$ref": "#p:FinancialRecord:interimNumber"
+              }
+            },
+            {
+              "fieldName": "paymentTerms",
+              "property": {
+                "$ref": "#p:FinancialRecord:paymentTerms"
+              }
+            },
+            {
+              "fieldName": "grossAmount",
+              "property": {
+                "$ref": "#p:FinancialRecord:grossAmount"
+              }
+            },
+            {
+              "fieldName": "netAmount",
+              "property": {
+                "$ref": "#p:FinancialRecord:netAmount"
+              }
+            },
+            {
+              "fieldName": "deductions",
+              "property": {
+                "$ref": "#p:FinancialRecord:deductions"
+              }
+            },
+            {
+              "fieldName": "costType",
+              "property": {
+                "$ref": "#p:FinancialRecord:costType"
+              }
+            },
+            {
+              "fieldName": "costCenter",
+              "property": {
+                "$ref": "#p:FinancialRecord:costCenter"
+              }
+            },
+            {
+              "fieldName": "fiscalYear",
+              "property": {
+                "$ref": "#p:FinancialRecord:fiscalYear"
+              }
+            },
+            {
+              "fieldName": "revisedAmount",
+              "property": {
+                "$ref": "#p:FinancialRecord:revisedAmount"
+              }
+            },
+            {
+              "fieldName": "adjustmentReason",
+              "property": {
+                "$ref": "#p:FinancialRecord:adjustmentReason"
+              }
+            },
+            {
+              "fieldName": "statementType",
+              "property": {
+                "$ref": "#p:FinancialRecord:statementType"
+              }
+            },
+            {
+              "fieldName": "summary",
+              "property": {
+                "$ref": "#p:FinancialRecord:summary"
+              }
+            },
+            {
+              "fieldName": "summaryEmbedding",
+              "property": {
+                "$ref": "#p:FinancialRecord:summaryEmbedding"
+              }
+            },
+            {
+              "fieldName": "sourceUrl",
+              "property": {
+                "$ref": "#p:FinancialRecord:sourceUrl"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:BOQ"
+          },
+          "tableName": "BOQ.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "id",
+              "property": {
+                "$ref": "#p:BOQ:id"
+              }
+            },
+            {
+              "fieldName": "totalAmount",
+              "property": {
+                "$ref": "#p:BOQ:totalAmount"
+              }
+            },
+            {
+              "fieldName": "currency",
+              "property": {
+                "$ref": "#p:BOQ:currency"
+              }
+            },
+            {
+              "fieldName": "includesVAT",
+              "property": {
+                "$ref": "#p:BOQ:includesVAT"
+              }
+            },
+            {
+              "fieldName": "preparedDate",
+              "property": {
+                "$ref": "#p:BOQ:preparedDate"
+              }
+            },
+            {
+              "fieldName": "sourceUrl",
+              "property": {
+                "$ref": "#p:BOQ:sourceUrl"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Schedule"
+          },
+          "tableName": "Schedule.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "id",
+              "property": {
+                "$ref": "#p:Schedule:id"
+              }
+            },
+            {
+              "fieldName": "dataDate",
+              "property": {
+                "$ref": "#p:Schedule:dataDate"
+              }
+            },
+            {
+              "fieldName": "plannedStartDate",
+              "property": {
+                "$ref": "#p:Schedule:plannedStartDate"
+              }
+            },
+            {
+              "fieldName": "plannedFinishDate",
+              "property": {
+                "$ref": "#p:Schedule:plannedFinishDate"
+              }
+            },
+            {
+              "fieldName": "revision",
+              "property": {
+                "$ref": "#p:Schedule:revision"
+              }
+            },
+            {
+              "fieldName": "sourceUrl",
+              "property": {
+                "$ref": "#p:Schedule:sourceUrl"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:Report"
+          },
+          "tableName": "Report.csv",
+          "propertyMappings": [
+            {
+              "fieldName": "id",
+              "property": {
+                "$ref": "#p:Report:id"
+              }
+            },
+            {
+              "fieldName": "reportType",
+              "property": {
+                "$ref": "#p:Report:reportType"
+              }
+            },
+            {
+              "fieldName": "referenceNumber",
+              "property": {
+                "$ref": "#p:Report:referenceNumber"
+              }
+            },
+            {
+              "fieldName": "title",
+              "property": {
+                "$ref": "#p:Report:title"
+              }
+            },
+            {
+              "fieldName": "reportDate",
+              "property": {
+                "$ref": "#p:Report:reportDate"
+              }
+            },
+            {
+              "fieldName": "periodStart",
+              "property": {
+                "$ref": "#p:Report:periodStart"
+              }
+            },
+            {
+              "fieldName": "periodEnd",
+              "property": {
+                "$ref": "#p:Report:periodEnd"
+              }
+            },
+            {
+              "fieldName": "revision",
+              "property": {
+                "$ref": "#p:Report:revision"
+              }
+            },
+            {
+              "fieldName": "status",
+              "property": {
+                "$ref": "#p:Report:status"
+              }
+            },
+            {
+              "fieldName": "plannedTotal",
+              "property": {
+                "$ref": "#p:Report:plannedTotal"
+              }
+            },
+            {
+              "fieldName": "executedTotal",
+              "property": {
+                "$ref": "#p:Report:executedTotal"
+              }
+            },
+            {
+              "fieldName": "unit",
+              "property": {
+                "$ref": "#p:Report:unit"
+              }
+            },
+            {
+              "fieldName": "summary",
+              "property": {
+                "$ref": "#p:Report:summary"
+              }
+            },
+            {
+              "fieldName": "summaryEmbedding",
+              "property": {
+                "$ref": "#p:Report:summaryEmbedding"
+              }
+            },
+            {
+              "fieldName": "sourceUrl",
+              "property": {
+                "$ref": "#p:Report:sourceUrl"
+              }
+            }
+          ]
+        }
+      ],
+      "relationshipMappings": [
+        {
+          "relationship": {
+            "$ref": "#r:FOR_PROJECT:BOQ"
+          },
+          "tableName": "FOR_PROJECT__BOQ.csv",
+          "fromMappings": {
+            "#p:BOQ:id": "startId"
+          },
+          "toMappings": {
+            "#p:Project:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:FOR_PROJECT:Letter"
+          },
+          "tableName": "FOR_PROJECT__Letter.csv",
+          "fromMappings": {
+            "#p:Letter:id": "startId"
+          },
+          "toMappings": {
+            "#p:Project:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:FOR_PROJECT:Drawing"
+          },
+          "tableName": "FOR_PROJECT__Drawing.csv",
+          "fromMappings": {
+            "#p:Drawing:id": "startId"
+          },
+          "toMappings": {
+            "#p:Project:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:FOR_PROJECT:Agreement"
+          },
+          "tableName": "FOR_PROJECT__Agreement.csv",
+          "fromMappings": {
+            "#p:Agreement:id": "startId"
+          },
+          "toMappings": {
+            "#p:Project:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:FOR_PROJECT:Schedule"
+          },
+          "tableName": "FOR_PROJECT__Schedule.csv",
+          "fromMappings": {
+            "#p:Schedule:id": "startId"
+          },
+          "toMappings": {
+            "#p:Project:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:FOR_PROJECT:Report"
+          },
+          "tableName": "FOR_PROJECT__Report.csv",
+          "fromMappings": {
+            "#p:Report:id": "startId"
+          },
+          "toMappings": {
+            "#p:Project:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:FOR_PROJECT:EOTClaim"
+          },
+          "tableName": "FOR_PROJECT__EOTClaim.csv",
+          "fromMappings": {
+            "#p:EOTClaim:id": "startId"
+          },
+          "toMappings": {
+            "#p:Project:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:FOR_PROJECT:Proposal"
+          },
+          "tableName": "FOR_PROJECT__Proposal.csv",
+          "fromMappings": {
+            "#p:Proposal:id": "startId"
+          },
+          "toMappings": {
+            "#p:Project:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:FOR_PROJECT:FinancialRecord"
+          },
+          "tableName": "FOR_PROJECT__FinancialRecord.csv",
+          "fromMappings": {
+            "#p:FinancialRecord:id": "startId"
+          },
+          "toMappings": {
+            "#p:Project:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:CLIENT_OF:Organization"
+          },
+          "tableName": "CLIENT_OF.csv",
+          "fromMappings": {
+            "#p:Organization:id": "startId"
+          },
+          "toMappings": {
+            "#p:Project:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:CONTRACTOR_OF:Organization"
+          },
+          "tableName": "CONTRACTOR_OF.csv",
+          "fromMappings": {
+            "#p:Organization:id": "startId"
+          },
+          "toMappings": {
+            "#p:Project:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:CONSULTANT_OF:Organization"
+          },
+          "tableName": "CONSULTANT_OF.csv",
+          "fromMappings": {
+            "#p:Organization:id": "startId"
+          },
+          "toMappings": {
+            "#p:Project:id": "endId"
+          },
+          "propertyMappings": [
+            {
+              "fieldName": "role",
+              "property": {
+                "$ref": "#p:CONSULTANT_OF:role"
+              }
+            }
+          ]
+        },
+        {
+          "relationship": {
+            "$ref": "#r:SENT_BY:Letter"
+          },
+          "tableName": "SENT_BY.csv",
+          "fromMappings": {
+            "#p:Letter:id": "startId"
+          },
+          "toMappings": {
+            "#p:Organization:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:ADDRESSED_TO:Letter"
+          },
+          "tableName": "ADDRESSED_TO.csv",
+          "fromMappings": {
+            "#p:Letter:id": "startId"
+          },
+          "toMappings": {
+            "#p:Organization:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:SUBMITTED_BY:EOTClaim"
+          },
+          "tableName": "SUBMITTED_BY__EOTClaim.csv",
+          "fromMappings": {
+            "#p:EOTClaim:id": "startId"
+          },
+          "toMappings": {
+            "#p:Organization:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:SUBMITTED_BY:Proposal"
+          },
+          "tableName": "SUBMITTED_BY__Proposal.csv",
+          "fromMappings": {
+            "#p:Proposal:id": "startId"
+          },
+          "toMappings": {
+            "#p:Organization:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:DESIGNED_BY:Drawing"
+          },
+          "tableName": "DESIGNED_BY.csv",
+          "fromMappings": {
+            "#p:Drawing:id": "startId"
+          },
+          "toMappings": {
+            "#p:Organization:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:SIGNED_BY:Agreement"
+          },
+          "tableName": "SIGNED_BY.csv",
+          "fromMappings": {
+            "#p:Agreement:id": "startId"
+          },
+          "toMappings": {
+            "#p:Organization:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:CITES:EOTClaim"
+          },
+          "tableName": "CITES.csv",
+          "fromMappings": {
+            "#p:EOTClaim:id": "startId"
+          },
+          "toMappings": {
+            "#p:Agreement:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:PREPARED_BY:Report"
+          },
+          "tableName": "PREPARED_BY.csv",
+          "fromMappings": {
+            "#p:Report:id": "startId"
+          },
+          "toMappings": {
+            "#p:Organization:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:INVOLVES:FinancialRecord"
+          },
+          "tableName": "INVOLVES.csv",
+          "fromMappings": {
+            "#p:FinancialRecord:id": "startId"
+          },
+          "toMappings": {
+            "#p:Organization:id": "endId"
+          },
+          "propertyMappings": [
+            {
+              "fieldName": "role",
+              "property": {
+                "$ref": "#p:INVOLVES:role"
+              }
+            }
+          ]
+        },
+        {
+          "relationship": {
+            "$ref": "#r:REFERENCED_IN:FinancialRecord"
+          },
+          "tableName": "REFERENCED_IN.csv",
+          "fromMappings": {
+            "#p:FinancialRecord:id": "startId"
+          },
+          "toMappings": {
+            "#p:Letter:id": "endId"
+          },
+          "propertyMappings": []
+        },
+        {
+          "relationship": {
+            "$ref": "#r:GOVERNED_BY:FinancialRecord"
+          },
+          "tableName": "GOVERNED_BY.csv",
+          "fromMappings": {
+            "#p:FinancialRecord:id": "startId"
+          },
+          "toMappings": {
+            "#p:Agreement:id": "endId"
+          },
+          "propertyMappings": []
+        }
+      ]
+    },
+    "configurations": {
+      "idsToIgnore": [],
+      "arrayDelimiter": "|",
+      "vectorDelimiter": "|"
+    }
+  }
+}

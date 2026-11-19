@@ -1,0 +1,89 @@
+swagger: '2.0'
+info:
+  title: Neo4j Get Schema
+  description: >-
+    Retrieves the Neo4j schema using the same query as the official MCP
+    get-schema tool. Requires the accompanying Script.cs in the connector's
+    Code tab; Neo4j does not provide a native GET schema endpoint.
+  version: 1.0.0
+host: graph.example.org
+basePath: /
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /get-schema:
+    get:
+      operationId: GetSchema
+      summary: Get Neo4j schema
+      description: >-
+        Returns node labels, relationship types, properties with their types,
+        and relationship directions. Samples 1000 nodes, matching
+        NEO4J_MCP_SCHEMA_SAMPLE_SIZE in neo4j/.env. Takes no arguments.
+      x-ms-summary: Get schema
+      x-ms-visibility: important
+      responses:
+        '200':
+          description: Inferred schema. An empty database returns an empty array.
+          schema:
+            $ref: '#/definitions/SchemaResponse'
+        '405':
+          description: Only GET is accepted.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '502':
+          description: Neo4j returned a query error or an invalid schema response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        default:
+          description: Upstream HTTP error, including invalid Neo4j credentials (401).
+definitions:
+  SchemaResponse:
+    type: object
+    required:
+      - schema
+    properties:
+      schema:
+        type: array
+        items:
+          $ref: '#/definitions/SchemaEntry'
+  SchemaEntry:
+    type: object
+    required:
+      - key
+      - value
+    properties:
+      key:
+        type: string
+        description: Node label or relationship type.
+      value:
+        type: object
+        properties:
+          type:
+            type: string
+            description: Node or relationship.
+          properties:
+            type: object
+            description: Property names mapped to their inferred metadata and types.
+            additionalProperties:
+              type: object
+              additionalProperties: true
+          relationships:
+            type: object
+            description: Relationship types mapped to directions and connected labels.
+            additionalProperties:
+              type: object
+              additionalProperties: true
+  ErrorResponse:
+    type: object
+    required:
+      - error
+    properties:
+      error:
+        type: string
+securityDefinitions:
+  basic_auth:
+    type: basic
+security:
+  - basic_auth: []

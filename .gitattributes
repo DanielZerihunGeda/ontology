@@ -1,0 +1,2 @@
+# Preserve original archived exports, including their CRLF line endings.
+archive/ontologies/*.ttl -text whitespace=cr-at-eol

@@ -1,0 +1,40 @@
+{
+  "properties": {
+    "connectionParameters": {
+      "username": {
+        "type": "securestring",
+        "uiDefinition": {
+          "displayName": "Neo4j username",
+          "description": "Database username supplied by the connection",
+          "tooltip": "From local connection settings",
+          "constraints": { "tabIndex": 2, "clearText": true, "required": "true" }
+        }
+      },
+      "password": {
+        "type": "securestring",
+        "uiDefinition": {
+          "displayName": "Neo4j password",
+          "description": "Neo4j database password",
+          "tooltip": "From local connection settings",
+          "constraints": { "tabIndex": 3, "clearText": false, "required": "true" }
+        }
+      }
+    },
+    "iconBrandColor": "#018BFF",
+    "capabilities": [],
+    "policyTemplateInstances": [
+      {
+        "templateId": "setheader",
+        "title": "Set Neo4j URI header",
+        "parameters": {
+          "x-ms-apimTemplateParameter.name": "X-Neo4j-MCP-URI",
+          "x-ms-apimTemplateParameter.value": "neo4j+s://graph.example.org",
+          "x-ms-apimTemplateParameter.existsAction": "override",
+          "x-ms-apimTemplate-policySection": "Request"
+        }
+      }
+    ],
+    "publisher": "Example",
+    "stackOwner": "Example"
+  }
+}

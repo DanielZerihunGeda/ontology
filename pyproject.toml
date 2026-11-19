@@ -1,0 +1,7 @@
+[project]
+name = "ontology"
+version = "0.1.0"
+description = "Ontology models and reference documentation for document-driven knowledge graphs"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []

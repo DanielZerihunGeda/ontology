@@ -1,0 +1,78 @@
+swagger: '2.0'
+info:
+  title: Neo4j Reference Knowledge Graph
+  description: Reads the schema of the Reference knowledge graph on Neo4j Neo4j.
+  version: 1.0.0
+host: graph.example.org
+basePath: /
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /db/example-db/query/v2:
+    post:
+      operationId: GetSchema
+      summary: Get the database schema
+      description: >-
+        Labels with their properties and types, and relationships with direction
+        and the labels they connect, as stored in the database.
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              statement:
+                type: string
+                default: 'CALL apoc.meta.schema({sample: 1000}) YIELD value RETURN value AS schema'
+                x-ms-visibility: internal
+              accessMode:
+                type: string
+                default: Read
+                x-ms-visibility: internal
+            required:
+              - statement
+              - accessMode
+      responses:
+        '200':
+          description: Schema. It is in data.values[0][0].
+          schema:
+            $ref: '#/definitions/QueryResult'
+        '202':
+          description: Schema. It is in data.values[0][0].
+          schema:
+            $ref: '#/definitions/QueryResult'
+definitions:
+  QueryResult:
+    type: object
+    properties:
+      data:
+        type: object
+        properties:
+          fields:
+            type: array
+            items:
+              type: string
+          values:
+            type: array
+            items:
+              type: array
+              items: {}
+      errors:
+        type: array
+        items:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+securityDefinitions:
+  basic-auth:
+    type: basic
+security:
+  - basic-auth: []

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "neo4j-graph": {
+      "type": "stdio",
+      "command": "bash",
+      "args": ["integrations/neo4j/mcp-neo4j.sh"]
+    }
+  }
+}
