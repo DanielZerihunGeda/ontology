@@ -1,0 +1,40 @@
+%% Generated from model/model.tsv by model/generate.py. Do not edit by hand.
+%% Schema reference: instructions/instruction-v2.md, Model section.
+flowchart LR
+    %% ! marks required properties; all other properties are optional.
+    %% Arrows show permitted source-to-target patterns, without cardinality rules.
+    Project["<b>Project</b><br/>id: STRING!<br/>name: STRING!<br/>aliases: LIST&lt;STRING&gt;<br/>summary: STRING<br/>summaryEmbedding: LIST&lt;FLOAT&gt;<br/>status: STRING<br/>location: STRING<br/>startDate: DATETIME<br/>plannedCompletionDate: DATETIME<br/>actualCompletionDate: DATETIME<br/>durationDays: INTEGER<br/>areaSqm: FLOAT"]
+    Organization["<b>Organization</b><br/>id: STRING!<br/>name: STRING!<br/>aliases: LIST&lt;STRING&gt;<br/>clientType: STRING<br/>address: STRING<br/>city: STRING<br/>country: STRING<br/>email: STRING<br/>phoneNumber: STRING<br/>taxId: STRING"]
+    Letter["<b>Letter</b><br/>id: STRING!<br/>referenceNumber: STRING<br/>referenceNumberNorm: STRING<br/>issueDate: DATETIME<br/>direction: STRING<br/>subject: STRING<br/>summary: STRING<br/>summaryEmbedding: LIST&lt;FLOAT&gt;<br/>senderName: STRING<br/>recipientNames: LIST&lt;STRING&gt;<br/>sourceUrl: STRING"]
+    EOTClaim["<b>EOTClaim</b><br/>id: STRING!<br/>submittedDate: DATETIME<br/>status: STRING<br/>summary: STRING<br/>summaryEmbedding: LIST&lt;FLOAT&gt;<br/>contractSigningDate: DATETIME<br/>siteHandoverDate: DATETIME<br/>commencementDate: DATETIME<br/>originalContractPrice: FLOAT<br/>currency: STRING<br/>includesVAT: BOOLEAN<br/>originalDurationDays: INTEGER<br/>originalCompletionDate: DATETIME<br/>previouslyApprovedExtensionDays: INTEGER<br/>requestedExtensionDays: INTEGER<br/>requestedCompletionDate: DATETIME<br/>approvedExtensionDays: INTEGER<br/>sourceUrl: STRING"]
+    Agreement["<b>Agreement</b><br/>id: STRING!<br/>clauseNumber: STRING<br/>clauseNumberNorm: STRING<br/>signedDate: DATETIME<br/>clauseDate: DATETIME<br/>witnessNames: LIST&lt;STRING&gt;<br/>summary: STRING<br/>summaryEmbedding: LIST&lt;FLOAT&gt;<br/>sourceUrl: STRING"]
+    Proposal["<b>Proposal</b><br/>id: STRING!<br/>referenceNumber: STRING<br/>referenceNumberNorm: STRING<br/>title: STRING<br/>status: STRING<br/>submittedDate: DATETIME<br/>validUntil: DATETIME<br/>proposedAmount: FLOAT<br/>currency: STRING<br/>includesVAT: BOOLEAN<br/>summary: STRING<br/>summaryEmbedding: LIST&lt;FLOAT&gt;<br/>sourceUrl: STRING"]
+    Drawing["<b>Drawing</b><br/>id: STRING!<br/>referenceNumber: STRING<br/>referenceNumberNorm: STRING<br/>title: STRING<br/>discipline: STRING<br/>revision: STRING<br/>issueDate: DATETIME<br/>designerName: STRING<br/>sourceUrl: STRING"]
+    FinancialRecord["<b>FinancialRecord</b><br/>id: STRING!<br/>recordType: STRING!<br/>referenceNumber: STRING<br/>referenceNumberNorm: STRING<br/>description: STRING<br/>category: STRING<br/>amount: FLOAT<br/>currency: STRING<br/>taxAmount: FLOAT<br/>includesVAT: BOOLEAN<br/>status: STRING<br/>effectiveDate: DATETIME<br/>dueDate: DATETIME<br/>periodStart: DATETIME<br/>periodEnd: DATETIME<br/>paymentMethod: STRING<br/>transactionReference: STRING<br/>interimNumber: INTEGER<br/>paymentTerms: STRING<br/>grossAmount: FLOAT<br/>netAmount: FLOAT<br/>deductions: FLOAT<br/>costType: STRING<br/>costCenter: STRING<br/>fiscalYear: INTEGER<br/>revisedAmount: FLOAT<br/>adjustmentReason: STRING<br/>statementType: STRING<br/>summary: STRING<br/>summaryEmbedding: LIST&lt;FLOAT&gt;<br/>sourceUrl: STRING"]
+    BOQ["<b>BOQ</b><br/>id: STRING!<br/>totalAmount: FLOAT<br/>currency: STRING<br/>includesVAT: BOOLEAN<br/>preparedDate: DATETIME<br/>sourceUrl: STRING"]
+    Schedule["<b>Schedule</b><br/>id: STRING!<br/>dataDate: DATETIME<br/>plannedStartDate: DATETIME<br/>plannedFinishDate: DATETIME<br/>revision: STRING<br/>sourceUrl: STRING"]
+    Report["<b>Report</b><br/>id: STRING!<br/>reportType: STRING!<br/>referenceNumber: STRING<br/>referenceNumberNorm: STRING<br/>title: STRING<br/>reportDate: DATETIME<br/>periodStart: DATETIME<br/>periodEnd: DATETIME<br/>revision: STRING<br/>status: STRING<br/>plannedTotal: FLOAT<br/>executedTotal: FLOAT<br/>unit: STRING<br/>summary: STRING<br/>summaryEmbedding: LIST&lt;FLOAT&gt;<br/>sourceUrl: STRING"]
+
+    BOQ -->|"FOR_PROJECT"| Project
+    Letter -->|"FOR_PROJECT"| Project
+    Drawing -->|"FOR_PROJECT"| Project
+    Agreement -->|"FOR_PROJECT"| Project
+    Schedule -->|"FOR_PROJECT"| Project
+    Report -->|"FOR_PROJECT"| Project
+    EOTClaim -->|"FOR_PROJECT"| Project
+    Proposal -->|"FOR_PROJECT"| Project
+    FinancialRecord -->|"FOR_PROJECT"| Project
+    Organization -->|"CLIENT_OF"| Project
+    Organization -->|"CONTRACTOR_OF"| Project
+    Organization -->|"CONSULTANT_OF (role STRING optional)"| Project
+    Letter -->|"SENT_BY"| Organization
+    Letter -->|"ADDRESSED_TO"| Organization
+    EOTClaim -->|"SUBMITTED_BY"| Organization
+    Proposal -->|"SUBMITTED_BY"| Organization
+    Drawing -->|"DESIGNED_BY"| Organization
+    Agreement -->|"SIGNED_BY"| Organization
+    EOTClaim -->|"CITES"| Agreement
+    Report -->|"PREPARED_BY"| Organization
+    FinancialRecord -->|"INVOLVES (role STRING optional)"| Organization
+    FinancialRecord -->|"REFERENCED_IN"| Letter
+    FinancialRecord -->|"GOVERNED_BY"| Agreement

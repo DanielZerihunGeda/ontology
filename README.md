@@ -9,6 +9,7 @@ The model includes **11 node labels and 14 relationship types**, with typed prop
 | Path | Description |
 |---|---|
 | [model/](model/) | Structured schema, OWL/Turtle representation, importer metadata and CSV templates. |
+| [diagram/](diagram/) | Mermaid graph schema and relationship overview. |
 | [docs/workflow.md](docs/workflow.md) | General document-to-graph workflow. |
 | [integrations/neo4j/](integrations/neo4j/) | Optional connection helpers and connector templates. |
 | [archive/](archive/) | Earlier schema variants and reference material. |

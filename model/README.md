@@ -110,6 +110,7 @@ The earlier TSV and superseded CSV headers are retained under [archive/model/pre
 | `ontology.ttl` | Current model as OWL/Turtle in Fabric's export style. The filename and `owl:versionInfo` are retained generator metadata; refer to the structured schema for the current model. Lists appear as text, embedding properties are omitted, and relationship properties appear in comments. |
 | `import_csv/*.csv` | Flat copies of the current empty node and relationship headers, matching the importer model. |
 | `generate.py` | Local artifact generator. |
+| [`../diagram/*.mmd`](../diagram/) | Generated Mermaid relationship overview and complete graph schema with typed properties. |
 
 ## Search roles (`search` column)
 
@@ -129,7 +130,7 @@ The CSV headers, importer metadata and Cypher files are reference representation
 
 ## Refreshing local artifacts
 
-After updating `model.tsv`, run `python3 model/generate.py` from the repository root. This updates the grouped templates, importer JSON, Cypher references and generated Turtle locally. Refresh the flat `import_csv/` headers from the grouped templates as well. Preserve populated CSVs before refreshing headers, and retire superseded node headers explicitly: the existing generator removes obsolete relationship templates but does not remove obsolete node templates. Refreshing local files does not apply database changes.
+After updating `model.tsv`, run `python3 model/generate.py` from the repository root. This updates the grouped templates, importer JSON, Cypher references, generated Turtle and Mermaid diagrams locally. Refresh the flat `import_csv/` headers from the grouped templates as well. Preserve populated CSVs before refreshing headers, and retire superseded node headers explicitly: the existing generator removes obsolete relationship templates but does not remove obsolete node templates. Refreshing local files does not apply database changes.
 
 ## Additional domains
 

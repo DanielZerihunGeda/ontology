@@ -1,0 +1,204 @@
+%% Generated from model/model.tsv by model/generate.py. Do not edit by hand.
+%% Schema reference: instructions/instruction-v2.md, Model section.
+classDiagram
+    direction LR
+    %% Arrows show permitted source-to-target patterns, without cardinality rules.
+    %% Required properties and closed enums are listed in class notes.
+    class Project {
+        STRING id
+        STRING name
+        LIST~STRING~ aliases
+        STRING summary
+        LIST~FLOAT~ summaryEmbedding
+        STRING status
+        STRING location
+        DATETIME startDate
+        DATETIME plannedCompletionDate
+        DATETIME actualCompletionDate
+        INTEGER durationDays
+        FLOAT areaSqm
+    }
+    note for Project "Required: id, name. Other properties are optional.<br/>status: Tendering, Ongoing, Suspended, Completed, Terminated<br/>CONSULTANT_OF.role (optional STRING): Supervision, Design, Design and Supervision, Project Management"
+    class Organization {
+        STRING id
+        STRING name
+        LIST~STRING~ aliases
+        STRING clientType
+        STRING address
+        STRING city
+        STRING country
+        STRING email
+        STRING phoneNumber
+        STRING taxId
+    }
+    note for Organization "Required: id, name. Other properties are optional.<br/>clientType: Government, Public Enterprise, Private, NGO / International Organization, Individual<br/>INVOLVES.role (optional STRING): Issuer, Recipient, Payer, Payee, Beneficiary, Contractor"
+    class Letter {
+        STRING id
+        STRING referenceNumber
+        STRING referenceNumberNorm
+        DATETIME issueDate
+        STRING direction
+        STRING subject
+        STRING summary
+        LIST~FLOAT~ summaryEmbedding
+        STRING senderName
+        LIST~STRING~ recipientNames
+        STRING sourceUrl
+    }
+    note for Letter "Required: id. Other properties are optional.<br/>direction: Incoming, Outgoing"
+    class EOTClaim {
+        STRING id
+        DATETIME submittedDate
+        STRING status
+        STRING summary
+        LIST~FLOAT~ summaryEmbedding
+        DATETIME contractSigningDate
+        DATETIME siteHandoverDate
+        DATETIME commencementDate
+        FLOAT originalContractPrice
+        STRING currency
+        BOOLEAN includesVAT
+        INTEGER originalDurationDays
+        DATETIME originalCompletionDate
+        INTEGER previouslyApprovedExtensionDays
+        INTEGER requestedExtensionDays
+        DATETIME requestedCompletionDate
+        INTEGER approvedExtensionDays
+        STRING sourceUrl
+    }
+    note for EOTClaim "Required: id. Other properties are optional.<br/>status: Submitted, Under Review, Approved, Partially Approved, Rejected"
+    class Agreement {
+        STRING id
+        STRING clauseNumber
+        STRING clauseNumberNorm
+        DATETIME signedDate
+        DATETIME clauseDate
+        LIST~STRING~ witnessNames
+        STRING summary
+        LIST~FLOAT~ summaryEmbedding
+        STRING sourceUrl
+    }
+    note for Agreement "Required: id. Other properties are optional."
+    class Proposal {
+        STRING id
+        STRING referenceNumber
+        STRING referenceNumberNorm
+        STRING title
+        STRING status
+        DATETIME submittedDate
+        DATETIME validUntil
+        FLOAT proposedAmount
+        STRING currency
+        BOOLEAN includesVAT
+        STRING summary
+        LIST~FLOAT~ summaryEmbedding
+        STRING sourceUrl
+    }
+    note for Proposal "Required: id. Other properties are optional.<br/>status: Draft, Submitted, Won, Lost, Withdrawn"
+    class Drawing {
+        STRING id
+        STRING referenceNumber
+        STRING referenceNumberNorm
+        STRING title
+        STRING discipline
+        STRING revision
+        DATETIME issueDate
+        STRING designerName
+        STRING sourceUrl
+    }
+    note for Drawing "Required: id. Other properties are optional.<br/>discipline: Architectural, Structural, Civil Engineering, Mechanical, Plumbing, Interior Design, Geotechnical, Electrical, Infrastructure"
+    class FinancialRecord {
+        STRING id
+        STRING recordType
+        STRING referenceNumber
+        STRING referenceNumberNorm
+        STRING description
+        STRING category
+        FLOAT amount
+        STRING currency
+        FLOAT taxAmount
+        BOOLEAN includesVAT
+        STRING status
+        DATETIME effectiveDate
+        DATETIME dueDate
+        DATETIME periodStart
+        DATETIME periodEnd
+        STRING paymentMethod
+        STRING transactionReference
+        INTEGER interimNumber
+        STRING paymentTerms
+        FLOAT grossAmount
+        FLOAT netAmount
+        FLOAT deductions
+        STRING costType
+        STRING costCenter
+        INTEGER fiscalYear
+        FLOAT revisedAmount
+        STRING adjustmentReason
+        STRING statementType
+        STRING summary
+        LIST~FLOAT~ summaryEmbedding
+        STRING sourceUrl
+    }
+    note for FinancialRecord "Required: id, recordType. Other properties are optional.<br/>recordType: Invoice, Payment, Payroll, Expense, Cost, Budget, CreditNote, FinancialStatement, PurchaseOrder, Receipt, Other"
+    class BOQ {
+        STRING id
+        FLOAT totalAmount
+        STRING currency
+        BOOLEAN includesVAT
+        DATETIME preparedDate
+        STRING sourceUrl
+    }
+    note for BOQ "Required: id. Other properties are optional."
+    class Schedule {
+        STRING id
+        DATETIME dataDate
+        DATETIME plannedStartDate
+        DATETIME plannedFinishDate
+        STRING revision
+        STRING sourceUrl
+    }
+    note for Schedule "Required: id. Other properties are optional."
+    class Report {
+        STRING id
+        STRING reportType
+        STRING referenceNumber
+        STRING referenceNumberNorm
+        STRING title
+        DATETIME reportDate
+        DATETIME periodStart
+        DATETIME periodEnd
+        STRING revision
+        STRING status
+        FLOAT plannedTotal
+        FLOAT executedTotal
+        STRING unit
+        STRING summary
+        LIST~FLOAT~ summaryEmbedding
+        STRING sourceUrl
+    }
+    note for Report "Required: id, reportType. Other properties are optional.<br/>reportType is an open string classification."
+
+    BOQ --> Project : FOR_PROJECT
+    Letter --> Project : FOR_PROJECT
+    Drawing --> Project : FOR_PROJECT
+    Agreement --> Project : FOR_PROJECT
+    Schedule --> Project : FOR_PROJECT
+    Report --> Project : FOR_PROJECT
+    EOTClaim --> Project : FOR_PROJECT
+    Proposal --> Project : FOR_PROJECT
+    FinancialRecord --> Project : FOR_PROJECT
+    Organization --> Project : CLIENT_OF
+    Organization --> Project : CONTRACTOR_OF
+    Organization --> Project : CONSULTANT_OF (role STRING optional)
+    Letter --> Organization : SENT_BY
+    Letter --> Organization : ADDRESSED_TO
+    EOTClaim --> Organization : SUBMITTED_BY
+    Proposal --> Organization : SUBMITTED_BY
+    Drawing --> Organization : DESIGNED_BY
+    Agreement --> Organization : SIGNED_BY
+    EOTClaim --> Agreement : CITES
+    Report --> Organization : PREPARED_BY
+    FinancialRecord --> Organization : INVOLVES (role STRING optional)
+    FinancialRecord --> Letter : REFERENCED_IN
+    FinancialRecord --> Agreement : GOVERNED_BY

@@ -11,6 +11,7 @@ Outputs (overwritten every run):
     model.json                            Data Importer (Data Importer) model, format 3.0.0
     post_import.cypher                    run after a graph Import load: indexes + *Norm copies
     ontology.ttl                          OWL/Turtle for Microsoft Fabric
+    ../diagram/*.mmd                     Mermaid schema and relationship overview
 """
 import csv
 import re
@@ -413,6 +414,69 @@ def write_post_import(settings, nodes):
     (HERE / "post_import.cypher").write_text("\n".join(out) + "\n")
 
 
+# --------------------------------------------------------------------------- diagrams
+def write_diagrams(nodes, rels):
+    """Keep both Mermaid views aligned with the structured schema."""
+    from html import escape
+
+    directory = HERE.parent / "diagram"
+    directory.mkdir(parents=True, exist_ok=True)
+    header = ["%% Generated from model/model.tsv by model/generate.py. Do not edit by hand.",
+              "%% Schema reference: instructions/instruction-v2.md, Model section."]
+    overview = [*header, "flowchart LR",
+                "    %% ! marks required properties; all other properties are optional.",
+                "    %% Arrows show permitted source-to-target patterns, without cardinality rules."]
+    schema = [*header, "classDiagram", "    direction LR",
+              "    %% Arrows show permitted source-to-target patterns, without cardinality rules.",
+              "    %% Required properties and closed enums are listed in class notes."]
+
+    for label, node in nodes.items():
+        fields = [f"<b>{label}</b>"]
+        for prop in node["props"]:
+            required_mark = "!" if prop["required"] == "yes" else ""
+            fields.append(f"{prop['name']}: {escape(prop['type'])}{required_mark}")
+        overview.append(f'    {label}["' + "<br/>".join(fields) + '"]')
+        schema.append(f"    class {label} {{")
+        for prop in node["props"]:
+            # Mermaid uses tildes to express generic types such as LIST~FLOAT~.
+            datatype = prop["type"].replace("<", "~").replace(">", "~")
+            schema.append(f"        {datatype} {prop['name']}")
+        schema.append("    }")
+        required = ", ".join(p["name"] for p in node["props"] if p["required"] == "yes")
+        notes = [f"Required: {required}. Other properties are optional."]
+        for prop in node["props"]:
+            if prop["allowedValues"]:
+                notes.append(f"{prop['name']}: {prop['allowedValues'].replace('|', ', ')}")
+        if label == "Report":
+            notes.append("reportType is an open string classification.")
+        # Relationship properties belong to edges; describe them without inventing classes.
+        for rtype, rel in rels.items():
+            if rel["to"] == label:
+                for prop in rel["props"]:
+                    required_text = "required" if prop["required"] == "yes" else "optional"
+                    notes.append(f"{rtype}.{prop['name']} ({required_text} {prop['type']}): "
+                                 f"{prop['allowedValues'].replace('|', ', ')}")
+        schema.append(f'    note for {label} "' + "<br/>".join(notes) + '"')
+
+    overview.append("")
+    schema.append("")
+    for rtype, rel in rels.items():
+        edge_label = rtype
+        if rel["props"]:
+            properties = ", ".join(
+                f"{p['name']} {p['type']}"
+                + (" required" if p["required"] == "yes" else " optional")
+                for p in rel["props"]
+            )
+            edge_label += f" ({properties})"
+        for source in rel["fromList"]:
+            overview.append(f'    {source} -->|"{edge_label}"| {rel["to"]}')
+            schema.append(f"    {source} --> {rel['to']} : {edge_label}")
+
+    (directory / "overview.mmd").write_text("\n".join(overview) + "\n")
+    (directory / "graph-schema.mmd").write_text("\n".join(schema) + "\n")
+
+
 if __name__ == "__main__":
     s, n, r = load_model(HERE / "model.tsv")
     write_templates(n, r)
@@ -420,5 +484,6 @@ if __name__ == "__main__":
     write_ttl(s, n, r)
     write_model_json(s, n, r)
     write_post_import(s, n)
+    write_diagrams(n, r)
     print(f"{len(n)} node labels, {len(r)} relationship types -> templates/, import.cypher, "
-          f"model.json, post_import.cypher, ontology.ttl")
+          f"model.json, post_import.cypher, ontology.ttl, ../diagram/*.mmd")
